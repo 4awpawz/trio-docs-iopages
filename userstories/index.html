@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Stories</title>
+    <link rel="stylesheet" href="/trio-docs-iopages/css/github-markdown.d66f3bc93608884a93624729d67e5612.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/default.min.css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+<body>
+    <main class="markdown-body">
+        <h1 id="user-stories">User Stories</h1>
+        <ul>
+            <li><a href="#in-the-begining-"> In the begining... </a></li>
+            <li><a href="#hello-world-"> Hello, World! </a></li>
+            <li>Connecting pages with links</li>
+            <li>Using front matter to customize pages</li>
+            <li>Adding common content accross pages</li>
+            <li>Blogging </li>
+        </ul>
+        <h2 id="in-the-begining-">In the begining...</h2>
+        <p>Betty is a software developer at Carniverous Consulting. In her spare time she&apos;s also a sci-fi fanatic. She has been thinking about creating her own website dedicated to her passion for science fiction so she&apos;s done some research. Since
+            she is a web developer she&apos;s already proficient in HTML, Markdown, CSS and JavaScript and she even used YAML front matter and knows some Node. She would like to use a static website generator that would allow her to leverage these skills
+            but everything she&apos;s found so far requires lots of configuration, one JavaScript templating language or another, React or View in a few cases, and all this just to be able to generate static web pages. Betty thinks that&apos;s just rediculous
+            so she puts her idea aside for a while.</p>
+        <p>One day Betty was checking her Twitter feed and noticed someone tweeting about a static site generator called Trio. What really grabbed her attention, though, was that the tweeter said that Trio only requires HTML, Markdown, CSS, JavaScript, something
+            called Cheerio, and a sprinkle of YAML front matter, and almost no configuration to create static web pages.</p>
+        <p>Intriged by what she read, Betty installed Trio, which she learned is a Node package, globally on her 2009 late model white Macbook laptop. She&apos;s used other Node packages before so she felt quite comfortable doing that. The documentation
+            said that after installing Trio she could run <code>trio new &lt;path/to/folder/&gt;</code> from the command line to create a new project. So Betty fired up her terminal application and ran <code>trio new myscifi</code>.</p>
+        <pre><code>$ trio new myscifi
+*** trio-new ***
+*** The target folder is &quot;myscifi&quot;
+*** Creating new project. Pleae wait...
+*** myscifi created</code></pre>
+        <p>Within moments she was informed that &quot;myscifi&quot; was created. Betty thought, &quot;Wow, that was kind of fast!&quot; Intriged again, Betty decided to open up her favorite code editor, VSCode, to explore what was created. She noticed one
+            folder in the root of her project named <code>source</code> so she expanded it which revealed a number of child folders. &quot;Hmm, now what? I better check the docs to see what I should do next.&quot;</p>
+        <p>Reading the docs Betty learned that to create a web page with Trio she needs to create a <code>page template</code> in the source/templates folder, which is an HTML file that defines the overall structure of a webpage and a <code>page fragment</code>            in the source/fragments folder, which can be either an HTML file or a markdown file and which is used to create variants of a particular webpage using the same page template. Furthermore, Betty learned that every webpage requires these 2 things
+            at a minim and that Trio merges their content together to create a webpage.</p>
+        <p>Intriged again, Betty decided to create the ubiquitous &quot;Hello, World!&quot; webpage thinking that if it takes her more than a few minutes, not including reading some docs, she&apos;ll dump Trio and continue her search for some other static
+            site generator to use.</p>
+        <h2 id="hello-world-">Hello, World!</h2>
+        <p>So Betty reads the docs about page fragments and learns that every one requires two front matter properties, <code>title</code> and <code>template</code>. The docs explained that &quot;title&quot; is used to assign a title to the webpage (after
+            all, what would a webpage be if it didn&apos;t have a title) and that &quot;template&quot; is used to identify the page template in the source/templates folder that the page fragment is associated with. She also learned that front matter uses
+            HTML comments as delimeters. Betty thought, &quot;Oh, that&apos;s smart! Front matter wont break my markup formatting then.&quot;</p>
+        <p>Betty then creates a new file in the source/templates folder and names it <code>default.html</code>. She wasn&apos;t sure how Trio names the pages it actually generates or even where Trio saves them but she decided she will just keep going to
+            find out.</p>
+        <p>Betty then uses Emmet to add some basic HTML markup to <code>default.html</code> to produce the following:</p>
+        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;main&gt;&lt;/main&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        <p>Looking at her page template content, Betty began wondering how Trio will know where to place the content from the page fragment she&apos;s about to create in the page template she just created. Reading the docs she learns that all she has to
+            do to instruct Trio where she wants the page framents comment to go is to add a <code>data-trio-fragment</code> attribute to an HTML tag. So after doing so, the <code>default.html</code> page template now looks like the following:</p>
+        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;main data-trio-fragment&gt;&lt;/main&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        <p>Then Betty creates a new file in the source/fragments folder, names it <code>index.md</code>, and adds the required front matter and the markdown content to it to produce the following:</p>
+        <pre><code class="language-markdown">&lt;!-- 
+title: Welcome
+template: default.html
+--&gt;
+# Hello, World!</code></pre>
+        <p>Betty&apos;s now thinking, &quot;OK, I&apos;ve created the page template and the page fragment, so what do I have to do now to actually generate the website?&quot; Betty goes back to the docs and learns that all she has to do is run the command
+            <code>trio build</code> in the terminal and Trio will create a new folder named <code>public</code> in which is the generated website. So Betty opens her terminal again, makes sure that the current directory is <code>myscifi</code>, runs the
+            <code>trio build</code> command and gets the following feedback:</p>
+        <pre><code>$ trio build
+building public folder for development</code></pre>
+        <p>Wondering why it said &quot;for development&quot; Betty goes back to the docs and learns that Trio also has something called a <code>release build</code> but that she will investigate that later as right now she just wants to know what the command
+            she just ran actually did.</p>
+        <p>So Betty now goes back to VSCode and notices that there is now a new folder named <code>public</code> in the project explorer and in it is a file named <code>index.html</code> as well as three empty folders - <code>css</code>, <code>media</code>,
+            and <code>scripts</code>. Curious as to what Trio actually generated for the <code>index.html</code> file, she opens that up in an editor window as sees the following:</p>
+        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Welcome&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1 id=&quot;hello-world-&quot;&gt;Hello, World!&lt;/h1&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;html</code></pre>
+        <p>&quot;Wow! That was really easy and I didn&apos;t have to configure anything and look, my output!&quot; Betty said to herself. Then she noticed that the <code>&lt;main&gt;&lt;/main&gt;</code> tag in the page template was missing, having been replaced
+            by the content from the page fragment. Wondering if there&apos;s a way to tell Trio, &quot;Hey, Trio! Don&apos;t replace the tag I added the <code>data-trio-fragment</code> attribute to. I want you to append the content to that tag instead.&quot;
+            So back to the docs she goes and quicly learns that all she has to do is add <code>appendToTarget: true</code> to the front matter in the page fragment and Trio will then append the content to the tag instead of replacing it. Betty goes back
+            and edits source/fragments/index.md which now looks like the following:</p>
+        <pre><code class="language-markdown">&lt;!-- 
+title: Welcome
+template: default.html
+appendToTarget: true
+--&gt;
+# Hello, World!</code></pre>
+        <p>Betty then goes back to the terminal and runs the build command <code>trio build</code> again and when it completes she then inspects the contents of the generated public/index.html file in VSCode and is very happy to see that Trio did indeed
+            append the content to the main tag and that the file now looks like the following:</p>
+        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Welcome&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;main data-trio-fragment=&quot;&quot;&gt;
+        &lt;h1 id=&quot;hello-world-&quot;&gt;Hello, World!&lt;/h1&gt;
+    &lt;/main&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        <p>&quot;Awesome! But how do I run what Trio just created for me in the browser?&quot; Betty though to herself. So Betty goes back to the docs and learns that to actually run the website in the browser all she has to do is run <code>trio serve</code>            from the command line and that will not only launch the website in the browser but will also refresh the browser anytime she changes something in the source folder.</p>
+        <p>Once again, Betty opens up her terminal applications, makes sure that the current directory is <code>myscifi</code> and runs the command <code>trio serve</code> which produces the following output (some of which is abreviated as it can be quite
+            verbose):</p>
+        <pre><code>launching browser, serving application and watching source folder for changes
+Starting chokidar
+Now watching:
+ { &apos;/Users/Betty/myscifi/source&apos;:
+   [ &apos;callbacks&apos;,
+     &apos;css&apos;,
+     &apos;data&apos;,
+     &apos;fragments&apos;,
+     &apos;includes&apos;,
+     &apos;media&apos;,
+     &apos;sass&apos;,
+     &apos;scripts&apos;,
+     &apos;templates&apos; ]}
+Starting browser-sync
+[Browsersync] Access URLs:
+ ------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.1.4:3000
+ ------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.1.4:3001
+ ------------------------------------
+[Browsersync] Serving files from: ./public</code></pre>
+        <p>and lo and behold, her browser suddenly appeared and was pleased to see that her page rendered correctly.</p>
+    </main>
+
+</body>
+
+</html>
