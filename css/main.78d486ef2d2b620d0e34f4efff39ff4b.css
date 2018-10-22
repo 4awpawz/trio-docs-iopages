@@ -14,3 +14,6 @@ body {
     max-width: 980px;
     margin: 0 auto;
     padding: 45px; } }
+
+.breadcrumbs {
+  font-style: italic; }
