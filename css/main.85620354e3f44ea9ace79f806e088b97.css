@@ -8,6 +8,11 @@ body {
 .markdown-body {
   padding: 15px; }
 
+.markdown-body img {
+  padding: 5px;
+  border-radius: 3px;
+  border: solid 1px #cecece; }
+
 @media (min-width: 766px) {
   .markdown-body {
     min-width: 200px;
