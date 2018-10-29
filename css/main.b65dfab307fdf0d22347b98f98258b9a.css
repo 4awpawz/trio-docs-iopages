@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 150px 0 0 0;
+  font-family: "Open Sans", sans-serif;
+  color: rgba(0, 0, 0, 0.8); }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem 0;
+  line-height: 1; }
+
+h1 {
+  font-size: 2rem; }
+
+p {
+  margin: 0 0 1rem 0; }
+
+button {
+  all: unset;
+  padding: .5rem; }
+
+strong {
+  font-weight: bolder;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.9); }
+
+.markdown-body {
+  display: block; }
+
+.markdown-body img {
+  width: 100%;
+  padding: 5px;
+  border-radius: 3px;
+  border: solid 1px #cecece;
+  box-sizing: border-box; }
+
+.container {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; }
+
+.media-object {
+  width: 100%;
+  display: flex;
+  flex-flow: column-reverse nowrap; }
+
+.media-object__item-1 {
+  flex: 0 1 50%; }
+
+.media-object__item-2 {
+  flex: 0 1 50%; }
+
+@media (min-width: 768px) {
+  .media-object {
+    flex-flow: row nowrap; } }
+
+.hamburer {
+  display: initial; }
+
+.hamburger__bun {
+  height: 11px;
+  margin: 14.5px 0; }
+
+.hamburger__patty {
+  width: 16px;
+  height: 1px;
+  margin: 4px auto;
+  background-color: #000;
+  outline: 1px solid #000; }
+
+.hamburger-checkbox {
+  display: none; }
+
+.hamburger-checkbox:checked + * {
+  display: block; }
+
+@media (min-width: 768px) {
+  .hamburger-helper {
+    display: none; } }
+
+.header-hamburger {
+  animation: animate-opacity 0.3s;
+  position: absolute;
+  top: -15px;
+  left: 10px; }
+
+.header {
+  padding-top: 20px;
+  background-color: #fff;
+  width: 100%;
+  position: relative;
+  overflow: hidden; }
+
+.header--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px rgba(0, 0, 0, 0.02); }
+
+.header__promo {
+  display: inline-block;
+  width: 100%;
+  text-align: center; }
+
+.header__promo-text {
+  font-family: "Lora", serif;
+  font-size: 2rem;
+  line-height: 2rem;
+  display: inline-block;
+  color: #000; }
+
+.header__nav {
+  display: none;
+  animation: animate-opacity 0.3s;
+  width: 100%; }
+
+.header__nav-items {
+  font-weight: 600;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0; }
+
+.header__nav-item {
+  display: block;
+  width: 100%;
+  color: #000;
+  position: relative; }
+
+.header__nav-item--active::after {
+  content: "";
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 5px;
+  width: 2px;
+  height: 100%;
+  margin: auto 0;
+  background-color: #000;
+  top: 0;
+  right: 0; }
+
+.header__nav-item:hover {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.header__nav-item-icon {
+  margin-right: 10px;
+  opacity: .45; }
+
+.header__nav-item-link {
+  text-decoration: none;
+  text-transform: initial;
+  color: inherit;
+  display: inline-block;
+  padding: 10px 0 10px 5px;
+  width: 100%;
+  height: 100%;
+  font-size: .9em;
+  font-weight: bold; }
+
+@keyframes animate-opacity {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@media (min-width: 768px) {
+  .header__promo {
+    display: inline-block;
+    width: initial;
+    text-align: initial; }
+  .header__nav {
+    display: block;
+    overflow: hidden;
+    width: initial;
+    position: relative;
+    float: right;
+    top: -1px;
+    animation: animate-opacity 0.3s; }
+  .header__nav-items {
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    width: 100%; }
+  .header__nav-item {
+    display: inline-block;
+    width: initial;
+    margin: 0 10px;
+    padding: 0; }
+  .header__nav-item:last-child {
+    margin-right: 0; }
+  .header__nav-item--active::after {
+    width: 100%;
+    height: 2px;
+    top: initial;
+    bottom: 0; }
+  .header__nav-item-link {
+    padding: 10px 10px 10px 10px; } }
+
+.breadcrumbs {
+  font-style: italic; }
+
+.trio-triangle__copy {
+  font-size: 1.25rem;
+  text-align: center; }
+  .trio-triangle__copy h1 {
+    font-size: 4rem;
+    color: darkgreen; }
+
+.trio-triangle__image-container {
+  margin-bottom: 20px; }
+
+.trio-triangle__image {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  border-radius: 100%;
+  filter: drop-shadow(0px 0px 10px rgba(0, 255, 0, 0.7)); }
+
+@media (min-width: 768px) {
+  .trio-triangle__copy {
+    text-align: left; }
+    .trio-triangle__copy h1 {
+      margin-bottom: 1rem; }
+  .trio-triangle__image {
+    width: 420px;
+    height: 420px;
+    margin: auto 0 auto 60px; } }

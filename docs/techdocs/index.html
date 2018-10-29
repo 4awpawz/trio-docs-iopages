@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-control" content="no-cache">
     <title>Technical Documents</title>
-    <link rel="stylesheet" href="/trio-docs-iopages/css/github-markdown.ffaeb65627d399d836ab7d691ad295eb.css">
+    <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.85620354e3f44ea9ace79f806e088b97.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.b65dfab307fdf0d22347b98f98258b9a.css">
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -17,8 +18,40 @@
 </head>
 
 <body>
-    <main class="markdown-body">
-        <div class="breadcrumbs"><a href="/trio-docs-iopages">Home</a></div>
+    <header class="header header--fixed">
+        <div class="container">
+            <div class="header__promo">
+                <div class="header__promo-text">Trio</div>
+            </div>
+            <label class="hamburger-helper" for="hamburger-checkbox">
+            <div class="hamburger header-hamburger">
+                <div class="hamburger__bun">
+                    <div class="hamburger__patty"></div>
+                    <div class="hamburger__patty"></div>
+                    <div class="hamburger__patty"></div>
+                </div>
+            </div>
+        </label>
+            <input class="hamburger-checkbox" type="checkbox" id="hamburger-checkbox" autocomplete="off">
+            <nav class="header__nav">
+                <ul class="header__nav-items">
+                    <li class="header__nav-item">
+                        <a class="header__nav-item-link" href="/trio-docs-iopages">
+                        <i class="fas fa-home header__nav-item-icon"></i>Home</a>
+                    </li>
+                    <li class="header__nav-item header__nav-item--active">
+                        <a class="header__nav-item-link" href="/trio-docs-iopages/docs">
+                        <i class="fas fa-file header__nav-item-icon"></i>Docs</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a id="trio-blog-link" class="header__nav-item-link" href="/trio-docs-iopages/blog">
+                        <i class="fas fa-columns header__nav-item-icon"></i>Blog</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="markdown-body container">
         <h1 id="trio-technical-document">Trio Technical Document</h1>
         <p><a href="../userstories"> User stories </a> are a great way to learn something new. These stories make you an active observer, learning along with the subject of each story as new topics are introduced. It is highly recommended that you read these
             stories before reading this technical documentation.</p>

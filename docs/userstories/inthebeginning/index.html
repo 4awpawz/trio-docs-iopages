@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-control" content="no-cache">
     <title>In The Begining</title>
-    <link rel="stylesheet" href="/trio-docs-iopages/css/github-markdown.ffaeb65627d399d836ab7d691ad295eb.css">
+    <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/github.min.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.85620354e3f44ea9ace79f806e088b97.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.b65dfab307fdf0d22347b98f98258b9a.css">
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -17,8 +18,40 @@
 </head>
 
 <body>
-    <main class="markdown-body">
-        <div class="breadcrumbs"> <a href="/trio-docs-iopages">Home</a> : <a href="/trio-docs-iopages/userstories">User Stories</a></div>
+    <header class="header header--fixed">
+        <div class="container">
+            <div class="header__promo">
+                <div class="header__promo-text">Trio</div>
+            </div>
+            <label class="hamburger-helper" for="hamburger-checkbox">
+            <div class="hamburger header-hamburger">
+                <div class="hamburger__bun">
+                    <div class="hamburger__patty"></div>
+                    <div class="hamburger__patty"></div>
+                    <div class="hamburger__patty"></div>
+                </div>
+            </div>
+        </label>
+            <input class="hamburger-checkbox" type="checkbox" id="hamburger-checkbox" autocomplete="off">
+            <nav class="header__nav">
+                <ul class="header__nav-items">
+                    <li class="header__nav-item">
+                        <a class="header__nav-item-link" href="/trio-docs-iopages">
+                        <i class="fas fa-home header__nav-item-icon"></i>Home</a>
+                    </li>
+                    <li class="header__nav-item header__nav-item--active">
+                        <a class="header__nav-item-link" href="/trio-docs-iopages/docs">
+                        <i class="fas fa-file header__nav-item-icon"></i>Docs</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a id="trio-blog-link" class="header__nav-item-link" href="/trio-docs-iopages/blog">
+                        <i class="fas fa-columns header__nav-item-icon"></i>Blog</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="markdown-body container">
         <h1 id="in-the-begining-">In The Begining...</h1>
         <p>Follow along with Betty as she learns the basics of using Trio.</p>
         <ul>
@@ -51,7 +84,7 @@
 *** myscifi created</code></pre>
         <p>After only a few moments the command completed and then Betty opened up her favorite code editor, VSCode, to explore what was created. She noticed that there was only one folder in the root of her project, named <code>source</code>, so she expanded
             it which revealed a number of child folders.</p>
-        <p><img src="../../media/empty-project-file-structure.98d6ccdabd7637290b732690d2ae2cc5.png" alt="image of empty project file structure after creating a new project from the command line"></p>
+        <p><img src="../../../media/empty-project-file-structure.98d6ccdabd7637290b732690d2ae2cc5.png" alt="image of empty project file structure after creating a new project from the command line"></p>
         <p>Betty thought, &quot;OK, so how do I create web pages? Maybe I should check the docs to find out.&quot; So Betty reads the docs and discovers that to create a web page she should:</p>
         <ol>
             <li>Create a <code>page template</code>, which is an HTML file that defines the overall structure of a web page, in the source/templates folder.</li>
@@ -113,7 +146,7 @@ building public folder for development</code></pre>
             now she just wants to know what the <code>trio build</code> command actually did.</p>
         <p>So Betty now goes back to VSCode and notices that there is now a new folder, named <code>public</code>, in the root folder of her project and in it is a file named <code>index.html</code> as well as three empty folders - <code>css</code>, <code>media</code>,
             and <code>scripts</code>.</p>
-        <p><img src="../../media/generated-public-folder.19adc3bcbd6e7d40740cee3d8ff5fb9f.png" alt="image of newly generated public folder"></p>
+        <p><img src="../../../media/generated-public-folder.19adc3bcbd6e7d40740cee3d8ff5fb9f.png" alt="image of newly generated public folder"></p>
         <p>Curious as to what Trio actually generated for the <code>index.html</code> file, she opens that up in an editor window and sees the following:</p>
         <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -187,7 +220,7 @@ Starting browser-sync
  ------------------------------------
 [Browsersync] Serving files from: ./public</code></pre>
         <p>and lo and behold, her browser suddenly appeares and Betty is pleased to see that her page rendered correctly.</p>
-        <p><img src="../../media/hello-world.3986ee8aea628a3cce1563ac6f8659b0.png" alt="image of Betty&apos;s page rendered in the browser"></p>
+        <p><img src="../../../media/hello-world.3986ee8aea628a3cce1563ac6f8659b0.png" alt="image of Betty&apos;s page rendered in the browser"></p>
         <p>Betty then adds a new line of markdown to the page fragment, which now looks like the following:</p>
         <pre><code class="language-html">&lt;!-- 
 title: Welcome
@@ -198,7 +231,7 @@ appendToTarget: true
 
 ## This isn&apos;t just la di da!</code></pre>
         <p>and notices that her page in the browser was refreshed to reflect the change she made:</p>
-        <p><img src="../../media/browser-refreshed-with-changes.d5de9bdf3553434d9f37c0f16a611ee1.png" alt="image of browser with refreshed page after Betty made changes to the page fragment"></p>
+        <p><img src="../../../media/browser-refreshed-with-changes.d5de9bdf3553434d9f37c0f16a611ee1.png" alt="image of browser with refreshed page after Betty made changes to the page fragment"></p>
         <p>Betty is thrilled that she was able to install Trio and in just a few short minutes easily generate a website, even if it&apos;s only the ubiquitous &quot;hello world&quot; sort of thing.</p>
         <h2 id="connecting-pages-with-links">Connecting pages with links</h2>
         <p>Having created a website with a default index page was certainly easy but Betty wondered how to add more pages to her site and how to link one page to another. Betty learns from reading the docs that <code>internal links</code> (i.e. links from
@@ -215,7 +248,7 @@ appendToTarget: true
 --&gt;
 # About</code></pre>
         <p>She also notices that Trio recognized that she added a new page fragment to the project and has already generated the new About page in the public folder:</p>
-        <p><img src="../../media/about-page-added-to-public-folder.bbe5ba144c378ccc419b9e17459d7087.png" alt="image of public folder with new about page"></p>
+        <p><img src="../../../media/about-page-added-to-public-folder.bbe5ba144c378ccc419b9e17459d7087.png" alt="image of public folder with new about page"></p>
         <p>Betty then adds a link to the new about page in page fragment source/index.md, which now looks like the following:</p>
         <pre><code class="language-html">&lt;!-- 
 title: Welcome
@@ -228,9 +261,9 @@ appendToTarget: true
 
 ### [About](/about)</code></pre>
         <p>Betty notices that the browser has already refreshed her index page, which now looks like the following:</p>
-        <p><img src="../../media/index-page-with-about-link.a3f4af82516632fc18a98a37b841fed3.png" alt="image of index page with a link to the about page"></p>
+        <p><img src="../../../media/index-page-with-about-link.a3f4af82516632fc18a98a37b841fed3.png" alt="image of index page with a link to the about page"></p>
         <p>She then clicks the <code>About</code> link on the page and the browser renders her About page:</p>
-        <p><img src="../../media/about-page.6101ab7a18013e85e57149618763111a.png" alt="image of About page"></p>
+        <p><img src="../../../media/about-page.6101ab7a18013e85e57149618763111a.png" alt="image of About page"></p>
         <h2 id="using-javascript-and-metadata-to-customize-pages">Using JavaScript and metadata to customize pages</h2>
 
     </main>
