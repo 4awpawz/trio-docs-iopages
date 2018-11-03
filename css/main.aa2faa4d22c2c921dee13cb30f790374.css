@@ -19,8 +19,12 @@ p {
   margin: 0 0 1rem 0; }
 
 button {
-  all: unset;
-  padding: .5rem; }
+  all: unset; }
+
+a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0; }
 
 strong {
   font-weight: bolder;
@@ -48,15 +52,15 @@ strong {
   display: flex;
   flex-flow: column-reverse nowrap; }
 
-.media-object__item-1 {
-  flex: 0 1 50%; }
-
-.media-object__item-2 {
-  flex: 0 1 50%; }
-
 @media (min-width: 768px) {
   .media-object {
-    flex-flow: row nowrap; } }
+    flex-flow: row nowrap; }
+  .media-object__item-1 {
+    width: 50%;
+    margin: auto; }
+  .media-object__item-2 {
+    width: 50%;
+    margin: auto; } }
 
 .hamburer {
   display: initial; }
@@ -100,8 +104,8 @@ strong {
   top: 0;
   left: 0;
   z-index: 100;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 1px rgba(0, 0, 0, 0.02); }
+  border-bottom: 1px solid rgba(0, 128, 0, 0.06);
+  box-shadow: 0 1px rgba(0, 128, 0, 0.02); }
 
 .header__promo {
   display: inline-block;
@@ -155,7 +159,6 @@ strong {
   opacity: .45; }
 
 .header__nav-item-link {
-  text-decoration: none;
   text-transform: initial;
   color: inherit;
   display: inline-block;
@@ -208,30 +211,134 @@ strong {
 .breadcrumbs {
   font-style: italic; }
 
-.trio-triangle__copy {
+.masthead-copy-container {
   font-size: 1.25rem;
   text-align: center; }
-  .trio-triangle__copy h1 {
+  .masthead-copy-container h1 {
     font-size: 4rem;
     color: darkgreen; }
 
-.trio-triangle__image-container {
-  margin-bottom: 20px; }
+.masthead-image-container {
+  width: 100%; }
 
-.trio-triangle__image {
+.masthead-image {
   display: block;
   width: 200px;
-  height: 200px;
+  height: auto;
   margin: auto;
-  border-radius: 100%;
   filter: drop-shadow(0px 0px 10px rgba(0, 255, 0, 0.7)); }
 
 @media (min-width: 768px) {
-  .trio-triangle__copy {
+  .masthead-copy-container {
     text-align: left; }
-    .trio-triangle__copy h1 {
+    .masthead-copy-container h1 {
       margin-bottom: 1rem; }
-  .trio-triangle__image {
-    width: 420px;
-    height: 420px;
-    margin: auto 0 auto 60px; } }
+  .masthead-image-container {
+    padding-left: 60px; }
+  .masthead-image {
+    width: 100%;
+    height: auto; } }
+
+@media (min-width: 992px) {
+  .masthead-copy-container {
+    text-align: left; }
+    .masthead-copy-container h1 {
+      margin-bottom: 1rem; }
+  .masthead-image-container {
+    padding-left: 60px; }
+  .masthead-image {
+    max-width: 100%;
+    height: auto; } }
+
+.card-deck {
+  display: block;
+  width: 100%;
+  padding: 0; }
+
+.get-started-card {
+  width: 100%;
+  list-style: none;
+  font-size: 1.1rem;
+  background-color: rgba(144, 238, 144, 0.08);
+  margin: 0 0 20px 0;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 10px rgba(0, 128, 0, 0.3); }
+
+.get-started-card span {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 1rem; }
+
+.get-started-card h2 {
+  font-size: 1.8rem;
+  color: darkgreen;
+  text-align: center; }
+
+.get-started-card code {
+  background-color: #fff; }
+
+.get-started-card a {
+  text-decoration: underline; }
+
+@media (min-width: 768px) {
+  .card-deck {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-between; }
+  .get-started-card {
+    flex: 1 0 30%; }
+  .get-started-card:last-child {
+    margin-right: 0; } }
+
+.button-primary, .button-secondary {
+  text-align: center;
+  display: inline-block;
+  border: solid 1px #cfcfcf;
+  border-radius: 5px;
+  margin: 0;
+  width: 100%;
+  background-color: #fff;
+  color: #404040;
+  font-size: 1rem;
+  font-weight: 500; }
+
+.button-primary,
+.button-secondary {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: .8rem 0;
+  font-size: 1.2rem; }
+
+.button-primary {
+  border: solid 1px green;
+  color: green; }
+  .button-primary:hover {
+    border-color: green;
+    color: #fff;
+    background-color: green;
+    transition: border-color 1s, color 1s, background-color 1s; }
+
+.button-secondary {
+  border: solid 1px blue;
+  color: blue; }
+  .button-secondary:hover {
+    border-color: blue;
+    color: #fff;
+    background-color: blue;
+    transition: border-color 1s, color 1s, background-color 1s; }
+
+.buttons-tray {
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
+
+@media (min-width: 768px) {
+  .button-primary,
+  .button-secondary {
+    width: 50%;
+    margin-bottom: 0;
+    margin-right: 10px; }
+  .buttons-tray {
+    flex-direction: row; }
+  .button-secondary:last-child {
+    margin-right: 0; } }
