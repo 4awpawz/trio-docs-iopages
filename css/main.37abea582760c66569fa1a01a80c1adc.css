@@ -73,8 +73,8 @@ strong {
   width: 16px;
   height: 1px;
   margin: 4px auto;
-  background-color: #000;
-  outline: 1px solid #000; }
+  background-color: darkgreen;
+  outline: 1px solid darkgreen; }
 
 .hamburger-checkbox {
   display: none; }
@@ -117,7 +117,7 @@ strong {
   font-size: 2rem;
   line-height: 2rem;
   display: inline-block;
-  color: #000; }
+  color: darkgreen; }
 
 .header__nav {
   display: none;
@@ -134,7 +134,7 @@ strong {
 .header__nav-item {
   display: block;
   width: 100%;
-  color: #000;
+  color: green;
   position: relative; }
 
 .header__nav-item--active::after {
@@ -146,17 +146,15 @@ strong {
   width: 2px;
   height: 100%;
   margin: auto 0;
-  background-color: #000;
+  background-color: darkgreen;
   top: 0;
   right: 0; }
 
 .header__nav-item:hover {
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.1); }
-
-.header__nav-item-icon {
-  margin-right: 10px;
-  opacity: .45; }
+  background-color: rgba(0, 128, 0, 0.375);
+  color: white;
+  font-weight: bold; }
 
 .header__nav-item-link {
   text-transform: initial;
@@ -196,8 +194,7 @@ strong {
   .header__nav-item {
     display: inline-block;
     width: initial;
-    margin: 0 10px;
-    padding: 0; }
+    padding: 0 20px; }
   .header__nav-item:last-child {
     margin-right: 0; }
   .header__nav-item--active::after {
@@ -253,7 +250,10 @@ strong {
 .card-deck {
   display: block;
   width: 100%;
-  padding: 0; }
+  padding: 20px 20px 0 20px;
+  border: solid 1px rgba(0, 128, 0, 0.1);
+  border-radius: 3px;
+  box-shadow: 2px 2px 10px rgba(0, 128, 0, 0.175); }
 
 .get-started-card {
   width: 100%;
@@ -263,7 +263,7 @@ strong {
   margin: 0 0 20px 0;
   padding: 20px;
   border-radius: 3px;
-  box-shadow: 2px 2px 10px rgba(0, 128, 0, 0.3); }
+  box-shadow: 2px 2px 10px rgba(0, 100, 0, 0.375); }
 
 .get-started-card span {
   color: rgba(0, 0, 0, 0.8);
@@ -272,7 +272,7 @@ strong {
 .get-started-card h2 {
   font-size: 1.8rem;
   color: darkgreen;
-  text-align: center; }
+  text-align: left; }
 
 .get-started-card code {
   background-color: #fff; }
@@ -280,15 +280,35 @@ strong {
 .get-started-card a {
   text-decoration: underline; }
 
+.get-started-card .getwebcreative {
+  display: block;
+  width: 43%;
+  height: auto;
+  margin: auto; }
+
+.get-started-card--creative p {
+  margin: 20px 0; }
+  .get-started-card--creative p a {
+    color: green;
+    font-weight: bold;
+    font-size: 1.2rem; }
+
 @media (min-width: 768px) {
   .card-deck {
     display: flex;
     flex-flow: row wrap;
     align-content: space-between; }
   .get-started-card {
-    flex: 1 0 30%; }
+    flex: 1 0 33.3333%; }
   .get-started-card:last-child {
-    margin-right: 0; } }
+    margin-right: 0; }
+  .get-started-card--creative {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center; }
+    .get-started-card--creative .getwebcreative {
+      display: flex;
+      max-width: 35%; } }
 
 .button-primary, .button-secondary {
   text-align: center;
