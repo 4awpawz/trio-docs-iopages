@@ -59,7 +59,7 @@
             styling to our page.</p>
         <ol>
             <li>
-                <p>In the source/sass folder create a new file named main.scss.</p>
+                <p>In the source/sass folder create a new file named app.scss.</p>
             </li>
             <li>
                 <p>Using your editor of choice, open the file an copy/paste the following into it.</p>
@@ -70,27 +70,27 @@
             <li>
                 <p>Build the project. From the project&apos;s root folder run the following from the command line.</p>
                 <pre><code class="language-shell"> trio build</code></pre>
-                <p> Once the build is complete, open up your project&apos;s public/css folder. You should see 2 new files there - main-map.css.map and main.18db23283b81cf71a699eb58cef946cb.css.</p>
+                <p> Once the build is complete, open up your project&apos;s public/css folder. You should see 2 new files there - app-map.css.map and app.css.</p>
             </li>
             <li>
-                <p>Now we need to link public/css/main.18db23283b81cf71a699eb58cef946cb.css up into our web page. Open the file source/templates/default.html in your editor and add the following to the bottom of the head section</p>
-                <pre><code class="language-html"> &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/main.18db23283b81cf71a699eb58cef946cb.css&quot;&gt;</code></pre>
+                <p>Now we need to link public/css/app.css up into our web page. Open the file source/templates/default.html in your editor and add the following to the bottom of the head section</p>
+                <pre><code class="language-html"> &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/app.css&quot;&gt;</code></pre>
                 <p>which should then look like this:</p>
                 <pre><code class="language-html"> &lt;head&gt;
      &lt;meta charset=&quot;UTF-8&quot;&gt;
      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
      &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
      &lt;title&gt;title&lt;/title&gt;
-     &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/main.18db23283b81cf71a699eb58cef946cb.css&quot;&gt;
+     &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/app.css&quot;&gt;
  &lt;/head&gt;</code></pre>
             </li>
             <li>
                 <p>Now lets build and run our website. From the project&apos;s root folder run the following from the command line</p>
                 <pre><code class="language-shell"> trio build &amp;&amp; trio serve</code></pre>
-                <p>and after Trio has built and launched the website in the browser you should see a dark green &quot;Hello World&quot; in all its glory. Yeaaaaaa!</p>
+                <p>and after Trio has built and launched the website in the browser you should see a dark green &quot;Hello World&quot; in all its magnificent glory. Yeaaaaaa!</p>
             </li>
         </ol>
-        <p><strong>Note: For those who prefer to work with plain CSS all you would need to change is to create a new file in source/css named main.18db23283b81cf71a699eb58cef946cb.css and of course add the styling to the h1 element there. Everything else is the same and when you build the project and open public/css you would see a new file there named main.18db23283b81cf71a699eb58cef946cb.css.</strong></p>
+        <p><strong>Note: For those who prefer to work with plain CSS all you would need to change is to create a new file in source/css named app.css and of course add the styling to the h1 element there. Everything else is the same and when you build the project and open public/css you would see a new file there named app.css.</strong></p>
         <p><a href="/trio-docs-iopages/docs/getstarted">Back To Get Started</a></p>
     </main>
     <footer class="footer">
