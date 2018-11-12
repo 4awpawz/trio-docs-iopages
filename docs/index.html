@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-control" content="no-cache">
-    <title>Trio Documentation</title>
+    <title>Docs - Introduction</title>
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.73fe1dcff92d8cc35d196e64663c07d2.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.18db23283b81cf71a699eb58cef946cb.css">
     <script src="/trio-docs-iopages/scripts/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -51,16 +51,157 @@
             </nav>
         </div>
     </header>
-    <main class="container">
-        <h1>Trio Documentation</h1>
-
-        <h2><a href="/trio-docs-iopages/docs/getstarted">Get Started</a></h2>
-
-        <h2><a href="/trio-docs-iopages/docs/userstories">User Stories</a></h2>
-
-        <h2><a href="/trio-docs-iopages/docs/techdocs">Technical Docs</a></h2>
+    <main class="docs container">
+        <div class="docs__sidebar">
+            <div class="docs__sidebar-toc">
+                <h2 id="table-of-contents">Table Of Contents</h2>
+                <ul>
+                    <li>
+                        <p><a href="/trio-docs-iopages/docs/#">Introduction</a></p>
+                        <ul>
+                            <li><a href="/trio-docs-iopages/docs/#about-this-document">About This Document</a></li>
+                            <li><a href="/trio-docs-iopages/docs/#features">Features</a></li>
+                            <li><a href="/trio-docs-iopages/docs/#installing-trio">Installing Trio</a></li>
+                            <li><a href="/trio-docs-iopages/docs/#project-structure">Project Structure</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><a href="/trio-docs-iopages/docs/pages/#">Pages</a></p>
+                        <ul>
+                            <li><a href="/trio-docs-iopages/docs/pages/#how-trio-creates-pages">How Trio Creates Pages</a></li>
+                            <li><a href="/trio-docs-iopages/docs/pages/#front-matter">Front Matter</a></li>
+                            <li><a href="/trio-docs-iopages/docs/pages/#page-fragments">Page Fragments</a></li>
+                            <li><a href="/trio-docs-iopages/docs/pages/#includes">Includes</a></li>
+                            <li><a href="/trio-docs-iopages/docs/pages/#page-templates">Page Templates</a></li>
+                            <li>Styling Pages</li>
+                            <li>Sass</li>
+                            <li>CSS</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>Customizing Pages</p>
+                        <ul>
+                            <li>Metadata</li>
+                            <li>JavaScript Callbacks</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>Blogging</p>
+                        <ul>
+                            <li>Blog Pages</li>
+                            <li>Articles</li>
+                            <li>Tags</li>
+                            <li>Tag Pages</li>
+                            <li>Categories</li>
+                            <li>Category Pages</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="docs__content">
+            <h1 id="introduction">Introduction</h1>
+            <p>Trio is an open source toolkit for building static webistes with HTML, CSS and JavaScript. With almost &quot;zero configuration&quot; required you use YAML front matter, JavaScript and Sass/CSS to quickly prototype your designs, which makes
+                Trio the perfect tool for those who love to design in the browser.</p>
+            <p>As such Trio is somewhat opinionated but if you love working with HTML, CSS and JavaScript then you just might love creating static websites with it. </p>
+            <p>This isn&apos;t just la di da!</p>
+            <h2 id="about-this-document">About This Document</h2>
+            <p>Throughout this document the use of the term <strong>content</strong> should be interpreted to mean both <code>HTML</code> and <code>markdown</code>.</p>
+            <h2 id="features">Features</h2>
+            <ul>
+                <li>
+                    <p>Through the use of <em>convention over configuration</em>, Trio requires almost zero <a href="#configuration">configuration</a>, which means you can start using Trio right out of the box.</p>
+                </li>
+                <li>
+                    <p>Supports <code>Sass</code> (i.e. .scss, .sass, .map ) and vanila <code>CSS</code>. See <a href="#project-structure">Project Structure</a> for more information.</p>
+                </li>
+                <li>
+                    <p>Trio is extensible and should you need to you can easily add your own pre and post processing using Grunt, Gulp, NPM, etc. task-based workflows.</p>
+                </li>
+                <li>
+                    <p><code>Permalinks</code> (sometimes called &quot;pretty links&quot;) are dynamically generated for all pages. See <a href="#urls">URLS</a> for more information.</p>
+                </li>
+                <li>
+                    <p>Prepends URLs found in <code>src</code> and <code>href</code> attributes with a URL base segment at time of release. See <a href="#configuration">configuration</a> and <a href="#command-line">command line</a> for more information.</p>
+                </li>
+                <li>
+                    <p>Cache busts your files using MD5 hash-based file names at time of release.</p>
+                </li>
+                <li>
+                    <p>Extensive support for <a href="#blogging">blogging</a> including tags, categories and numerous catalogs of blog-specific metadata that are exposed to JavaScript callbacks used to customize your blog pages.</p>
+                </li>
+                <li>
+                    <p><a href="#metadata">Metadata</a> generated at build time is saved to file <code>&quot;trio.manifest.json&quot;</code> in your project&apos;s root folder. Having the ability to actually see this data makes it much easier to reason about
+                        when coding the <a href="#javascript-callbacks">JavaScript callbacks</a> you use to dynamically customize your web pages.</p>
+                </li>
+                <li>
+                    <p>Simple and easy to reason about <a href="#project-structure">project structure</a>.</p>
+                </li>
+                <li>
+                    <p><a href="#front-matter">Front Matter</a> parses as HTML comments and doesn&apos;t break markup and markdown formatting.</p>
+                </li>
+                <li>
+                    <p>Comprehensive <a href="#command-line">command line</a> support is provided:</p>
+                    <ul>
+                        <li>Create new project</li>
+                        <li>Build project for development</li>
+                        <li>Launch the browser and watch for changes</li>
+                        <li>Build project for release</li>
+                        <li>Help</li>
+                    </ul>
+                </li>
+            </ul>
+            <h2 id="installing-trio">Installing Trio</h2>
+            <p>To install Trio, run the following from the command line:</p>
+            <pre><code class="language-shell">npm i -g @4awpawz/trio</code></pre>
+            <h2 id="project-structure">Project Structure</h2>
+            <h3 id="root-"><code>root/</code></h3>
+            <p>The project&apos;s root folder.</p>
+            <h3 id="root-public-"><code>root/public/</code></h3>
+            <p>The folder where the generated website is saved to and is recreated whenever Trio builds the project&apos;s source folder.</p>
+            <h3 id="root-source-"><code>root/source/</code></h3>
+            <p>The Trio project&apos;s development folder. All development is confined to this folder.</p>
+            <h3 id="root-source-callbacks-"><code>root/source/callbacks/</code></h3>
+            <p>The folder where JavaScript callback modules are kept. These are the JavaScript modules you declare in both page fragments and includes.</p>
+            <h3 id="root-source-css-"><code>root/source/css/</code></h3>
+            <p>The folder where CSS files are kept.</p>
+            <h3 id="root-source-data-"><code>root/source/data/</code></h3>
+            <p>The folder where .json data files are kept which are exposed via the <code>dataCatalog</code> property in the metadata that Trio generates and their contents are exposed as &quot;file name&quot;: [file content].</p>
+            <p>For example, the content of the file /data/personalization.json would be exposed as:</p>
+            <pre><code class="language-json">&quot;dataCatalog&quot;: {
+    &quot;personalization&quot;: {
+        &quot;name&quot;: &quot;John Doe&quot;,
+        &quot;twitter&quot;: &quot;@johndoe&quot;
+    },
+    &quot;someotherfile&quot; {...}
+}</code></pre>
+            <h3 id="root-source-fragments-"><code>root/source/fragments/</code></h3>
+            <p>The folder where .md and .html page fragments are kept.</p>
+            <h3 id="root-source-fragments-blog"><code>root/source/fragments/blog</code></h3>
+            <p>The folder where .md and .html blog specific page fragments are kept.</p>
+            <h3 id="root-source-fragments-blog-articles"><code>root/source/fragments/blog/articles</code></h3>
+            <p>The folder where .md and .html blog article specific page fragments are kept.</p>
+            <h3 id="root-source-includes-"><code>root/source/includes/</code></h3>
+            <p>The folder where .md and .html include files are kept.</p>
+            <h3 id="root-source-media-"><code>root/source/media/</code></h3>
+            <p>The folder where media (.jpg, .gif, .pdf, .etc) are kept.</p>
+            <h3 id="root-source-sass-"><code>root/source/sass/</code></h3>
+            <p>The folder where the main and imported .scss files are kept.</p>
+            <h3 id="root-source-scripts-"><code>root/source/scripts/</code></h3>
+            <p>The folder where run-time JavaScript files are kept.</p>
+            <h3 id="root-source-templates-"><code>root/source/templates/</code></h3>
+            <p>The folder where .html page templates are kept.</p>
+            <h3 id="root-trio-json"><code>root/trio.json</code></h3>
+            <p>The project&apos;s configuration file.</p>
+            <h3 id="root-trio-manifest-json"><code>root/trio.manifest.json</code></h3>
+            <p>Contains the extensive collections of metadata that is generated every time Trio builds the project.</p>
+            <h2 id="configuration">Configuration</h2>
+            <h2 id="command-line">Command Line</h2>
+            <h2 id="community">Community</h2>
+            <h2 id="copyright-license">Copyright/License</h2>
+            <p>Copyright &#xA9;2018 All Rights Reserved. License MIT.</p>
+        </div>
     </main>
-
     <footer class="footer">
         <div class="container">
             <p>Designed with the passion for <strong>simplifying complex things</strong> and with love for the <strong>Web</strong> by <strong>@jefftschwartz</strong></p>

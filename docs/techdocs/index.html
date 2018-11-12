@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.73fe1dcff92d8cc35d196e64663c07d2.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.18db23283b81cf71a699eb58cef946cb.css">
     <script src="/trio-docs-iopages/scripts/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -56,36 +56,34 @@
         <p><a href="../userstories"> User stories </a> are a great way to learn something new. These stories make you an active observer, learning along with the subject of each story as new topics are introduced. It is highly recommended that you read these
             stories before reading this technical documentation.</p>
         <h2 id="welcome-to-trio">Welcome to Trio</h2>
-        <p>Trio is a simple to use static website generator built with Node.js. It reflects its author&apos;s desire to rely exclusively upon the three pillars of the web - <em>HTML</em>, <em>JavaScript</em> and <em>CSS</em> - along with <em>YAML front matter</em>            and with the <em>least amount of configuration necessary</em>, to create static websites.</p>
+        <p>Trio is an open source toolkit for building static webistes with HTML, CSS and JavaScript. With almost &quot;zero configuration&quot; required you use YAML front matter, JavaScript and Sass to quickly prototype your designs, which makes Trio the
+            perfect tool for those who love to design in the browser.</p>
         <p>As such Trio is somewhat opinionated but if you love working with HTML, CSS and JavaScript then you just might love creating static websites with it. </p>
         <p>This isn&apos;t just la di da!</p>
         <h2 id="about-this-document">About This Document</h2>
-        <p>Throughout this document the term <code>content</code> is understood to mean <code>html</code> or <code>markdown</code>.</p>
+        <p>Throughout this document the use of the term <code>content</code> should be understood to mean either <code>html</code> or <code>markdown</code>.</p>
         <h2 id="features">Features</h2>
         <ul>
+            <li>
+                <p>Through the use of <em>convention over configuration</em>, Trio requires almost zero <a href="#configuration">configuration</a>, which means you can start using Trio right out of the box.</p>
+            </li>
             <li>
                 <p>Supports <code>Sass</code> (i.e. .scss, .sass, .map ) and vanila <code>CSS</code>. See <a href="#project-structure">Project Structure</a> for more information.</p>
             </li>
             <li>
-                <p><code>Permalinks</code> are automatically generated for all internal links and are derived from an index.html file&apos;s parent folder name or an .md or .html file&apos;s name. See <a href="#urls">URLS</a> for more information.</p>
+                <p><code>Permalinks</code> (sometimes called &quot;pretty links&quot;) are dynamically generated for all pages. See <a href="#urls">URLS</a> for more information.</p>
             </li>
             <li>
-                <p>Prepends production site&apos;s <code>base url</code> segment to URLS in <code>src</code> and <code>href</code> attributes when building your site&apos;s release build. For more information see <a href="#data-trio-link">data-trio-link</a>,
-                    <a href="#configuration">configuration</a> and <a href="#command-line">command line</a>.</p>
+                <p>Prepends links found in <code>src</code> and <code>href</code> attributes with a URL base segment at time of release. See <a href="#configuration">configuration</a> and <a href="#command-line">command line</a> for more information.</p>
             </li>
             <li>
-                <p>Cache busts your files using MD5 hash-based file names when building your site&apos;s release build.</p>
+                <p>Cache busts your files using MD5 hash-based file names at time of release.</p>
             </li>
             <li>
                 <p>Extensive support for <a href="#blogging">blogging</a> including tags, categories and numerous catalogs of blog-specific metadata that are exposed to JavaScript callbacks used to customize your blog pages.</p>
             </li>
             <li>
-                <p>Trio generates an extensive collection of <a href="#metadata">metadata</a> that it exposes to the JavaScript callbacks you use to customize your web pages and also as a JSON file, <code>trio.metadata.json</code>, which it saves in the
-                    root of your project folder. Having the ability to actually see this data makes it much easier to reason about when coding the <a href="#javascript-callbacks">JavaScript callbacks</a> that will use this data to to dynamically add content
-                    to and customize your web pages.</p>
-            </li>
-            <li>
-                <p>Through the use of <em>convention over configuration</em>, Trio requires almost zero <a href="#configuration">configuration</a>, which means you can start using Trio right out of the box.</p>
+                <p>The <a href="#metadata">metadata</a> generated at build time is saved in the root of your project folder as `trio.manifest.json. Having the ability to actually see this data makes it much easier to reason about when coding the <a href="#javascript-callbacks">JavaScript callbacks</a>                    you use to to dynamically customize your web pages.</p>
             </li>
             <li>
                 <p>Simple and easy to reason about <a href="#project-structure">project structure</a>.</p>
@@ -94,20 +92,19 @@
                 <p><a href="#front-matter">Front Matter</a> will parse as HTML comments and wont break your markup&apos;s formatting.</p>
             </li>
             <li>
-                <p>Trio provides comprehensive <a href="#command-line">command line</a> support to assist you while developing your website.</p>
+                <p>Comprehensive <a href="#command-line">command line</a> support to assist you while developing your website.</p>
                 <ul>
                     <li>Create a new project</li>
                     <li>Build project for development.</li>
                     <li>Watch for changes and refresh the browser.</li>
                     <li>Build project for release.</li>
-                    <li>Ask for help, but honestly Trio is so simple to use that you probably wont even need to ask for help.</li>
+                    <li>Help</li>
                 </ul>
             </li>
         </ul>
         <h2 id="installing-trio">Installing Trio</h2>
-        <p>Trio is meant to be installed globally. From the command line please run the following:</p>
+        <p>To install Trio, run the following from the command line:</p>
         <pre><code class="language-shell">npm i -g @4awpawz/trio</code></pre>
-        <h2 id="quick-start">Quick Start</h2>
         <h2 id="how-trio-creates-web-pages">How Trio Creates Web Pages</h2>
         <p>For every <a href="#includes">include</a> file Trio finds in the <a href="#project-structure">source/includes folder</a> it performs the following action:</p>
         <ol>
@@ -159,7 +156,7 @@ callback: showCurrentPageInHeader.js
 }</code></pre>
         <p><strong>!</strong> <em>Trio uses the resilient and performant <a href="https://github.com/jonschlinkert/gray-matter">gray-matter library</a> to implement its front matter support. If you aren&apos;t already familiar with front matter you are urged to follow the link to this library and read its excellent documentation.</em></p>
         <p><strong>!</strong> <em>Trio uses the open and close HTML comment tags (i.e. &lt;!--, --&gt;) as YAML front matter open and close delimiters, so front matter will not create formatting issues in your .html and .md files.</em></p>
-        <h3 id="properties-predefined-by-trio">Properties Predefined By Trio</h3>
+        <h3 id="front-matter-properties-predefined-by-trio">Front Matter Properties Predefined By Trio</h3>
         <p>Trio predefines several front matter properties that can be used in <a href="#includes"> includes </a> and <a href="#page-fragments"> page fragments </a>. Their usage is described below.</p>
         <h4 id="template"><code>template</code></h4>
         <pre><code class="language-html">&lt;!--
@@ -741,7 +738,6 @@ header: complexheader.html
         <h2 id="community">Community</h2>
         <h2 id="license-copyright">License/Copyright</h2>
     </main>
-
     <footer class="footer">
         <div class="container">
             <p>Designed with the passion for <strong>simplifying complex things</strong> and with love for the <strong>Web</strong> by <strong>@jefftschwartz</strong></p>
