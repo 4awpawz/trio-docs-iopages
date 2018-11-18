@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.18db23283b81cf71a699eb58cef946cb.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.1d2d61fd7880a9b8ff178918d0181de8.css">
     <script src="/trio-docs-iopages/scripts/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -54,12 +54,302 @@
     <section class="container">
         <main class="learnhowto">
             <h1 id="metadata">Metadata</h1>
+            <p>Trio generates an extensive amount of metadata while building your project&apos;s source folder. During the build process, for example, Trio accumulates data about each page fragment, including their front matter. If the project includes a
+                blog, Trio also generates blog specific metadata.</p>
+            <p>Each time Trio builds your project it saves the metadata to a file named source/trio.manifest.json. Being able to actually see all the data makes it easier to reason about how best to use it in your project&apos;s JavaScript callbacks and
+                because much of this metadata is organized as lists they are simple to iterate over with JavaScript. Please see the topic <a href="/trio-docs-iopages/docs/learn/javascriptcallbacks">JavaScript Callbacks</a> to learn about using metadata
+                in your project&apos;s JavaScript callbacks.</p>
+            <p><strong>Important:</strong> File source/trio.manifest.json is used internally by Trio when serving your project and should not be deleted though it is perfectly acceptible to include it in .gitignore. If it does get deleted for some reason
+                just run either <code>trio build</code> or <code>trio release</code> to generate it.</p>
+            <p>Below is a list of the metadata that Trio generates, including their key names and their descriptions:</p>
+            <h2 id="timestamp"><code>timestamp</code></h2>
+            <pre><code class="language-js">{
+    timestamp: &quot;2018-9-25 19:27:50&quot;
+}</code></pre>
+            <p>The project&apos;s build date and time.</p>
+            <h2 id="buildtype"><code>buildType</code></h2>
+            <pre><code class="language-js">{
+    buildType: &quot;development&quot;
+}</code></pre>
+            <p>Indicates the current build type, which can be either &quot;development&quot; or &quot;release&quot;.</p>
+            <h2 id="userconfig"><code>userConfig</code></h2>
+            <p><em>* trio.json</em></p>
+            <pre><code class="language-js">{
+    userConfig: {
+        blogFolderName: &quot;trioblog&quot;,
+        baseUrl: &quot;/trioiopages&quot;
+    }
+}</code></pre>
+            <p>The content of the prject&apos;s <code>trio.json</code> <a href="#configuration">configuration</a> file.</p>
+            <h2 id="datacatalog"><code>dataCatalog</code></h2>
+            <p><em>* source/data/author.json, source/data/fruits.json, source/data/vegies.json</em></p>
+            <pre><code class="language-js">{
+    dataCatalog: {
+        author: {
+            name: &quot;Jane Doe&quot;,
+            birthday: &quot;1978-01-14&quot;,
+            email: &quot;jane@jane.com&quot;,
+            country: &quot;United States&quot;,
+            address: &quot;1 East Drive Lane&quot;,
+            city: &quot;Manchester&quot;,
+            state: &quot;Newhamshire&quot;,
+            zip: &quot;00000&quot;
+        },
+        fruits: [&quot;apples&quot;, &quot;pears&quot;, &quot;grapes&quot;],
+        vegies: [&quot;spinach&quot;, &quot;zucchini&quot;, &quot;peas&quot;]
+    }
+}</code></pre>
+            <p>A hash with one key/value pair for each .json file found in the the project&apos;s source/data folder. The keys are the names of the individual files and the values are the file&apos;s content.</p>
+            <h2 id="frags"><code>frags</code></h2>
+            <pre><code class="language-js">{
+    frags: [
+        {
+            path: &quot;source/fragments/index.html&quot;,
+            matter: {
+                content: &quot;&lt;div class=\&quot;banner\&quot;&gt;\n    &lt;img data-trio-link class=\&quot;banner__image\&quot; src=\&quot;/media/triad.jpg\&quot; alt=\&quot;image of triad\&quot;&gt;\n&lt;/div&gt;\n\n&lt;section class=\&quot;container\&quot;&gt;\n    &lt;h1 class=\&quot;page-title\&quot;&gt;Everything you always wanted in a static site generator... but less.&lt;/h1&gt;\n&lt;/section&gt;&quot;,
+                data: {
+                    template: &quot;source/templates/default.html&quot;,
+                    appendToTarget: true,
+                    title: &quot;Welcome to Trio!&quot;,
+                    activeHeaderItem: 1,
+                    callback: &quot;showCurrentPageInHeader.js&quot;
+                },
+                isEmpty: false,
+                excerpt: &quot;&quot;
+            },
+            id: 13,
+            destPath: &quot;public/index.html&quot;,
+            url: &quot;/&quot;
+        },
+        .
+        .
+        .
+    ]
+}</code></pre>
+            <p>A list with one item for each page fragment that isn&apos;t a blog article.</p>
+            <p>All page fragments, including <a href="#articlescatalog">blog article related page fragments</a>, have the following properties.</p>
+            <h3 id="path"><code>path</code></h3>
+            <p>The page fragment&apos;s file path.</p>
+            <h3 id="matter"><code>matter</code></h3>
+            <p>The page fragment&apos;s YAML front matter.</p>
+            <h3 id="id"><code>id</code></h3>
+            <p>The page fragment&apos;s unique id.</p>
+            <h3 id="destpath"><code>destPath</code></h3>
+            <p>The generated page&apos;s destination path.</p>
+            <h3 id="url"><code>url</code></h3>
+            <p>The generated page&apos;s url.</p>
+            <h2 id="articlescount"><code>articlesCount</code></h2>
+            <pre><code class="language-js">{
+    articlesCount: 3
+}</code></pre>
+            <p>The total number of blog articles.</p>
+            <h2 id="articlescatalog"><code>articlesCatalog</code></h2>
+            <pre><code class="language-js">{
+    articlesCatalog: [
+        {
+            path: &quot;source/fragments/blog/articles/2018-08-02-unlockyourimagination.md&quot;,
+            matter: {
+                content: &quot;&lt;p&gt;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.&lt;/p&gt;\n&lt;!-- end --&gt;\n&lt;p&gt;Exercitation laborum tempor nulla consequat nisi minim consequat magna magna sint ut ut culpa. Id irure dolore veniam deserunt velit sint qui enim id occaecat ipsum. Magna sunt laboris quis ut mollit mollit laborum veniam mollit sunt reprehenderit laboris.&lt;/p&gt;\n&lt;p&gt;Velit reprehenderit fugiat Lorem minim non duis exercitation ex. Occaecat consectetur duis duis consequat minim tempor occaecat cupidatat nostrud nulla aliqua. Velit deserunt nostrud cillum labore irure esse duis cupidatat dolor eiusmod. Occaecat quis veniam magna enim Lorem commodo esse ea esse. In quis id laborum dolore laborum magna ullamco. Culpa ex cillum deserunt enim culpa nulla anim elit duis.&lt;/p&gt;\n&quot;,
+                data: {
+                    description: &quot;blog article&quot;,
+                    template: &quot;source/templates/article.html&quot;,
+                    appendToTarget: true,
+                    title: &quot;Unlock Your Imagination&quot;,
+                    subtitle: &quot;and liberate your mind&quot;,
+                    image: &quot;chain-key-lock.jpg&quot;,
+                    activeHeaderItem: 3,
+                    callback: [
+                        &quot;article.js&quot;,
+                        &quot;showCurrentPageInHeader.js&quot;
+                    ],
+                    category: [
+                        &quot;web development&quot;
+                    ],
+                    tag: [
+                        &quot;html&quot;
+                    ]
+                },
+                isEmpty: false,
+                excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+            },
+            id: 5,
+            destPath: &quot;public/trioblog/Web Development/2018/08/02/unlockyourimagination/index.html&quot;,
+            url: &quot;/trioblog/Web Development/2018/08/02/unlockyourimagination/&quot;,
+            articleDate: &quot;2018-08-02&quot;,
+            nextArticleUrl: &quot;&quot;,
+            previousArticleUrl: &quot;/trioblog/Web Development/2018/08/01/skyisthelimit/&quot;,
+            relatedArticlesByTag: [
+                {
+                    tag: &quot;html&quot;,
+                    related: [
+                        {
+                            articleDate: &quot;2018-08-01&quot;,
+                            url: &quot;/trioblog/Web Development/2018/08/01/skyisthelimit/&quot;,
+                            title: &quot;The Sky&apos;s The Limit&quot;,
+                            id: 4,
+                            excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+                        },
+                        {
+                            articleDate: &quot;2018-07-14&quot;,
+                            url: &quot;/trioblog/Web Development/Trio/2018/07/14/thepowerofthree/&quot;,
+                            title: &quot;The Power of Three&quot;,
+                            id: 3,
+                            excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+                        }
+                    ]
+                }
+            ],
+            relatedArticlesByTagFlattened: [
+                {
+                    articleDate: &quot;2018-08-01&quot;,
+                    url: &quot;/trioblog/Web Development/2018/08/01/skyisthelimit/&quot;,
+                    title: &quot;The Sky&apos;s The Limit&quot;,
+                    id: 4,
+                    excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.&quot;
+                },
+                {
+                    articleDate: &quot;2018-07-14&quot;,
+                    url: &quot;/trioblog/Web Development/Trio/2018/07/14/thepowerofthree/&quot;,
+                    title: &quot;The Power of Three&quot;,
+                    id: 3,
+                    excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.&quot;
+                }
+            ],
+            relatedArticlesByCategory: {
+                category: &quot;web development&quot;,
+                related: [
+                    {
+                        articleDate: &quot;2018-08-01&quot;,
+                        url: &quot;/trioblog/Web Development/2018/08/01/skyisthelimit/&quot;,
+                        title: &quot;The Sky&apos;s The Limit&quot;,
+                        id: 4,
+                        excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+                    }
+                ]
+            }
+        },
+        .
+        .
+        .
+    ]
+}</code></pre>
+            <p>A list whose items contain the metadata for each blog article related page fragment in descending date order.</p>
+            <p>In addition to the following properties specific to blog article page fragments, blog article related page fragment also have all of the properties that <a href="#frags">non blog article page fragments</a> have.</p>
+            <h3 id="articledate"><code>articleDate</code></h3>
+            <p>The posting date of the blog article as <code>&quot;yyyy-mm-dd&quot;</code>, which comes from the blog article page fragment&apos;s file name.</p>
+            <h3 id="nextarticleurl"><code>nextArticleUrl</code></h3>
+            <p>The URL of the blog article whose posting date immediately precedes (i.e. is newer) this article&apos;s posting date in chronological order.</p>
+            <p>Will be an empty string (i.e. &quot;&quot;) if this is the first article in descending chronological order.</p>
+            <h3 id="previousarticleurl"><code>previousArticleUrl</code></h3>
+            <p>The URL of the blog article whose posting date immediately follows (i.e. is older) this article&apos;s posting date in chronological order.</p>
+            <p>Will be an empty string (i.e. &quot;&quot;) if this is the last article in descending chronological order.</p>
+            <h3 id="relatedarticlesbytag"><code>relatedArticlesByTag</code></h3>
+            <p>A list of articles related to this article in descending chronological order, grouped by tag.</p>
+            <h4 id="tag"><code>tag</code></h4>
+            <p>The tag shared by all the related articles.</p>
+            <h4 id="related"><code>related</code></h4>
+            <p>A list of one or more articles which all have the same tag.</p>
+            <h5 id="articledate"><code>articleDate</code></h5>
+            <p>The posting date of the related article, which comes from the blog article&apos;s page fragment&apos;s file name.</p>
+            <h5 id="url"><code>url</code></h5>
+            <p>The URL of the related article.</p>
+            <h5 id="title"><code>title</code></h5>
+            <p>The title of the generated page, which comes from the blog article&apos;s page frament front matter.</p>
+            <h5 id="id"><code>id</code></h5>
+            <p>The unique id of the related article.</p>
+            <h5 id="excerpt"><code>excerpt</code></h5>
+            <p>The related article&apos;s excerpt if it has one.</p>
+            <h3 id="relatedarticlesbytagflattened"><code>relatedArticlesByTagFlattened</code></h3>
+            <p>Similar to <a href="#relatedarticlesbytag">relatedArticlesByTag</a> above, it is a flatenend list of all the articles related to this article in descending chronological order.</p>
+            <h3 id="relatedarticlesbycategory"><code>relatedArticlesByCategory</code></h3>
+            <p>Similar to <a href="#relatedarticlesbytag">relatedArticlesByTag</a> above, it is a list of articles related to this article in descending chronological order, grouped by category.</p>
+            <h2 id="sortedtagcatalog"><code>sortedTagCatalog</code></h2>
+            <pre><code class="language-js">sortedTagCatalog:
+[
+    {
+        tag: &quot;css&quot;,
+        related: [
+            {
+                articleDate: &quot;2018-08-01&quot;,
+                url: &quot;/trioblog/Web%20Development/2018/08/01/skyisthelimit/&quot;,
+                title: &quot;The Sky&apos;s The Limit&quot;,
+                id: 4,
+                excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+            },
+            {
+                articleDate: &quot;2018-07-14&quot;,
+                url: &quot;/trioblog/Web%20Development/Trio/2018/07/14/thepowerofthree/&quot;,
+                title: &quot;The Power of Three&quot;,
+                id: 3,
+                excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+            }
+        ]
+    },
+    .
+    .
+    .
+]</code></pre>
+            <p>A list whose items contain the metadata for each blog tag in alphabetical order.</p>
+            <h4 id="tag"><code>tag</code></h4>
+            <p>The tag shared by all the related articles.</p>
+            <h4 id="related"><code>related</code></h4>
+            <p>A list of articles related to this article in descending chronological order, grouped by tag.</p>
+            <h5 id="articledate"><code>articleDate</code></h5>
+            <p>The posting date of the related article, which comes from the blog article&apos;s page fragment&apos;s file name.</p>
+            <h5 id="url"><code>url</code></h5>
+            <p>The URL of the related article.</p>
+            <h5 id="title"><code>title</code></h5>
+            <p>The title of the generated page, which comes from the blog article&apos;s page frament front matter.</p>
+            <h5 id="id"><code>id</code></h5>
+            <p>The unique id of the related article.</p>
+            <h5 id="excerpt"><code>excerpt</code></h5>
+            <p>The related article&apos;s excerpt if it has one.</p>
+            <h2 id="catagoriescatalog"><code>catagoriesCatalog</code></h2>
+            <pre><code class="language-js">categoriesCatalog: [
+    {
+        category: &quot;web development&quot;,
+        related: [
+            {
+                articleDate: &quot;2018-08-02&quot;,
+                url: &quot;/trioblog/Web%20Development/2018/08/02/unlockyourimagination/&quot;,
+                title: &quot;Unlock Your Imagination&quot;,
+                id: 5,
+                excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+            },
+            {
+                articleDate: &quot;2018-08-01&quot;,
+                url: &quot;/trioblog/Web%20Development/2018/08/01/skyisthelimit/&quot;,
+                title: &quot;The Sky&apos;s The Limit&quot;,
+                id: 4,
+                excerpt: &quot;Esse ea sint magna occaecat occaecat veniam. Dolore ex pariatur ullamco minim dolor laboris ipsum. Laboris cillum esse incididunt est est irure officia ipsum duis sit. Est voluptate eiusmod sit adipisicing aute.\n&quot;
+            }
+        ]
+    },
+    .
+    .
+    .
+]</code></pre>
+            <p>A list whose items contain the metadata for each blog category in alphabetical order.</p>
+            <h4 id="category"><code>category</code></h4>
+            <p>The category shared by all the related articles.</p>
+            <h4 id="related"><code>related</code></h4>
+            <p>A list of articles related to this article in descending chronological order, grouped by category.</p>
+            <h5 id="articledate"><code>articleDate</code></h5>
+            <p>The posting date of the related areicle, which comes from the blog article&apos;s page fragment&apos;s file name.</p>
+            <h5 id="url"><code>url</code></h5>
+            <p>The URL of the related article.</p>
+            <h5 id="title"><code>title</code></h5>
+            <p>The title of the generated page, which comes from the blog article&apos;s page frament front matter.</p>
+            <h5 id="id"><code>id</code></h5>
+            <p>The unique id of the related article.</p>
+            <h5 id="excerpt"><code>excerpt</code></h5>
+            <p>The related article&apos;s excerpt if it has one.</p>
         </main>
         <a href="/trio-docs-iopages/docs/getstarted">&lt;&#xA0;Back To Get Started</a>
     </section>
     <footer class="footer">
         <div class="container">
-            <p>Designed with love for the <strong>Web</strong> and with the passion for <strong>simplifying complex things</strong> by <strong>@jefftschwartz</strong></p>
+            <p>Designed with love for the <strong>Web</strong> and with a passion for <strong>simplifying complex things</strong> by <strong>@jefftschwartz</strong></p>
             <p class="copyright">Copyright &#xA9;2018 All Rights Reserved. Code licensed MIT.</p>
         </div>
     </footer>
