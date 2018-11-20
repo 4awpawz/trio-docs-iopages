@@ -329,9 +329,7 @@ strong {
       display: flex;
       max-width: 35%; }
     .get-started-card--creative a {
-      font-size: 1.2rem; }
-  .get-started-card--creative:last-child {
-    flex: 0 1 33.3333%; } }
+      font-size: 1.2rem; } }
 
 :target::before {
   content: "";
@@ -428,6 +426,17 @@ strong {
   font-size: 1.25rem; }
 
 .learnhowto img {
-  padding: 5px;
-  border: solid 1px #cfcfcf;
-  border-radius: 3px; }
+  display: block;
+  max-width: 640px;
+  width: 100%;
+  height: auto;
+  margin: 20px 0 20px; }
+
+.article img {
+  display: block;
+  max-width: 640px;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0; }

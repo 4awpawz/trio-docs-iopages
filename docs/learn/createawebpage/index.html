@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.1d2d61fd7880a9b8ff178918d0181de8.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.a78b8b8a243afb4450c54f2ad4317ad2.css">
     <script src="/trio-docs-iopages/scripts/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -54,7 +54,7 @@
     <section class="container">
         <main class="learnhowto">
             <h1 id="create-a-web-page">Create A Web Page</h1>
-            <p><strong>Important</strong> Please review <a href="/trio-docs-iopages/docs/learn/howpagesarecomposed">How Pages Are Composed</a> before proceding with this exercise.</p>
+            <p><strong>Important</strong> Please review <a href="/trio-docs-iopages/docs/learn/howpagesarecomposed">How Pages Are Composed</a>, <a href="/trio-docs-iopages/docs/learn/frontmatter">Front Matter</a>, <a href="/trio-docs-iopages/docs/learn/metadata">Metadata</a>                and <a href="/docs/learn/javascriptcallbacks">JavaScript Callbacks</a> before proceding with this exercise.</p>
             <h2 id="1-create-a-page-template">1. Create A Page Template</h2>
             <p>In your project&apos;s source/templates folder, create a new file named default.html and copy and paste the following markup into it.</p>
             <pre><code class="language-html">&lt;!DOCTYPE html&gt;
@@ -343,7 +343,293 @@ appendToTarget: true
 
 &lt;/html&gt;</code></pre>
             <p>Because we are still serving our project the browser should now render our list of countries as shown below. If for some reason your browser isn&apos;t showing these changes, from your terminal please run <code>trio b &amp;&amp; trio s</code>                from your project&apos;s root folder.</p>
-            <p><img src="/trio-docs-iopages/media/helloworldandlistofcountries.1e6e5092cfeaa7ff53e10bd970d31aec.png"></p>
+            <img src="/trio-docs-iopages/media/helloworldandlistofcountries.1e6e5092cfeaa7ff53e10bd970d31aec.png">
+
+            <h2 id="5-adding-content-dynamically-using-javascript-and-metadata">5. Adding Content Dynamically Using JavaScript And Metadata</h2>
+            <p>In step 4 above we created an include to add our list of countries to our page. While it is a perfectly acceptable to do it that way, the sad truth is that countries have to be added and removed from the list as the geopolitical nature of
+                the world changes. A better approach would be to get the list from some online database, maybe by creating an NPM task that queries the United Nations countries database, and save the results of the query as a JSON file in souce/data/countries.json.
+                For this part of our exercise we are going to pretend that we did query a database and did get the results which we saved in source/data/countries.json.</p>
+            <h3 id="create-source-data-countries-json">Create source/data/countries.json</h3>
+            <p>We will mock the results of our imaginary query of an online countries database so create the file source/data/countries.json and copy and paste the JSON array of countries below to the file.</p>
+            <pre><code class="language-json">[&quot;Afghanistan&quot;,
+&quot;Albania&quot;,
+&quot;Algeria&quot;,
+&quot;Andorra&quot;,
+&quot;Angola&quot;,
+&quot;Antigua and Barbuda&quot;,
+&quot;Argentina&quot;,
+&quot;Armenia&quot;,
+&quot;Australia&quot;,
+&quot;Austria&quot;,
+&quot;Azerbaijan&quot;,
+&quot;Bahamas&quot;,
+&quot;Bahrain&quot;,
+&quot;Bangladesh&quot;,
+&quot;Barbados&quot;,
+&quot;Belarus&quot;,
+&quot;Belgium&quot;,
+&quot;Belize&quot;,
+&quot;Benin&quot;,
+&quot;Bhutan&quot;,
+&quot;Bolivia&quot;,
+&quot;Bosnia and Herzegovina&quot;,
+&quot;Botswana&quot;,
+&quot;Brazil&quot;,
+&quot;Brunei Darussalam&quot;,
+&quot;Bulgaria&quot;,
+&quot;Burkina Faso&quot;,
+&quot;Burundi&quot;,
+&quot;Cambodia&quot;,
+&quot;Cameroon&quot;,
+&quot;Canada&quot;,
+&quot;Cape Verde&quot;,
+&quot;Central African Republic&quot;,
+&quot;Chad&quot;,
+&quot;Chile&quot;,
+&quot;China&quot;,
+&quot;Colombia&quot;,
+&quot;Comoros&quot;,
+&quot;Congo&quot;,
+&quot;Congo (Democratic Republic of the)&quot;,
+&quot;Costa Rica&quot;,
+&quot;C&#xF4;te d&apos;Ivoire&quot;,
+&quot;Croatia&quot;,
+&quot;Cuba&quot;,
+&quot;Cyprus&quot;,
+&quot;Czech Republic&quot;,
+&quot;Denmark&quot;,
+&quot;Djibouti&quot;,
+&quot;Dominica&quot;,
+&quot;Dominican Republic&quot;,
+&quot;Ecuador&quot;,
+&quot;Egypt&quot;,
+&quot;El Salvador&quot;,
+&quot;Equatorial Guinea&quot;,
+&quot;Eritrea&quot;,
+&quot;Estonia&quot;,
+&quot;Ethiopia&quot;,
+&quot;Fiji&quot;,
+&quot;Finland&quot;,
+&quot;France&quot;,
+&quot;Gabon&quot;,
+&quot;Gambia&quot;,
+&quot;Georgia&quot;,
+&quot;Germany&quot;,
+&quot;Ghana&quot;,
+&quot;Greece&quot;,
+&quot;Grenada&quot;,
+&quot;Guatemala&quot;,
+&quot;Guinea&quot;,
+&quot;Guinea-Bissau&quot;,
+&quot;Guyana&quot;,
+&quot;Haiti&quot;,
+&quot;Honduras&quot;,
+&quot;Hungary&quot;,
+&quot;Iceland&quot;,
+&quot;India&quot;,
+&quot;Indonesia&quot;,
+&quot;Iran (Islamic Republic of)&quot;,
+&quot;Iraq&quot;,
+&quot;Ireland&quot;,
+&quot;Israel&quot;,
+&quot;Italy&quot;,
+&quot;Jamaica&quot;,
+&quot;Japan&quot;,
+&quot;Jordan&quot;,
+&quot;Kazakhstan&quot;,
+&quot;Kenya&quot;,
+&quot;Kiribati&quot;,
+&quot;Korea (Democratic People&apos;s Republic of)&quot;,
+&quot;Korea (Republic of)&quot;,
+&quot;Kuwait&quot;,
+&quot;Kyrgyzstan&quot;,
+&quot;Lao People&apos;s Democratic Republic&quot;,
+&quot;Latvia&quot;,
+&quot;Lebanon&quot;,
+&quot;Lesotho&quot;,
+&quot;Liberia&quot;,
+&quot;Libya&quot;,
+&quot;Liechtenstein&quot;,
+&quot;Lithuania&quot;,
+&quot;Luxembourg&quot;,
+&quot;Macedonia (The former Yugoslav Republic of)&quot;,
+&quot;Madagascar&quot;,
+&quot;Malawi&quot;,
+&quot;Malaysia&quot;,
+&quot;Maldives&quot;,
+&quot;Mali&quot;,
+&quot;Malta&quot;,
+&quot;Marshall Islands&quot;,
+&quot;Mauritania&quot;,
+&quot;Mauritius&quot;,
+&quot;Mexico&quot;,
+&quot;Micronesia (Federated States of)&quot;,
+&quot;Republic of Moldova&quot;,
+&quot;Monaco&quot;,
+&quot;Mongolia&quot;,
+&quot;Montenegro&quot;,
+&quot;Morocco&quot;,
+&quot;Mozambique&quot;,
+&quot;Myanmar&quot;,
+&quot;Namibia&quot;,
+&quot;Nauru&quot;,
+&quot;Nepal&quot;,
+&quot;Netherlands&quot;,
+&quot;New Zealand&quot;,
+&quot;Nicaragua&quot;,
+&quot;Niger&quot;,
+&quot;Nigeria&quot;,
+&quot;Norway&quot;,
+&quot;Oman&quot;,
+&quot;Pakistan&quot;,
+&quot;Palau&quot;,
+&quot;Panama&quot;,
+&quot;Papua New Guinea&quot;,
+&quot;Paraguay&quot;,
+&quot;Peru&quot;,
+&quot;Philippines&quot;,
+&quot;Poland&quot;,
+&quot;Portugal&quot;,
+&quot;Qatar&quot;,
+&quot;Romania&quot;,
+&quot;Russian Federation&quot;,
+&quot;Rwanda&quot;,
+&quot;Saint Kitts and Nevis&quot;,
+&quot;Saint Lucia&quot;,
+&quot;Saint Vincent and the Grenadines&quot;,
+&quot;Samoa&quot;,
+&quot;San Marino&quot;,
+&quot;Sao Tome and Principe&quot;,
+&quot;Saudi Arabia&quot;,
+&quot;Senegal&quot;,
+&quot;Serbia&quot;,
+&quot;Seychelles&quot;,
+&quot;Sierra Leone&quot;,
+&quot;Singapore&quot;,
+&quot;Slovakia&quot;,
+&quot;Slovenia&quot;,
+&quot;Solomon Islands&quot;,
+&quot;Somalia&quot;,
+&quot;South Africa&quot;,
+&quot;South Sudan&quot;,
+&quot;Spain&quot;,
+&quot;Sri Lanka&quot;,
+&quot;Sudan&quot;,
+&quot;Suriname&quot;,
+&quot;Swaziland&quot;,
+&quot;Sweden&quot;,
+&quot;Switzerland&quot;,
+&quot;Syrian Arab Republic&quot;,
+&quot;Tajikistan&quot;,
+&quot;Tanzania (United Republic of)&quot;,
+&quot;Thailand&quot;,
+&quot;Timor-Leste&quot;,
+&quot;Togo&quot;,
+&quot;Tonga&quot;,
+&quot;Trinidad and Tobago&quot;,
+&quot;Tunisia&quot;,
+&quot;Turkey&quot;,
+&quot;Turkmenistan&quot;,
+&quot;Tuvalu&quot;,
+&quot;Uganda&quot;,
+&quot;Ukraine&quot;,
+&quot;United Arab Emirates&quot;,
+&quot;United Kingdom of Great Britain and Northern Ireland&quot;,
+&quot;United States of America&quot;,
+&quot;Uruguay&quot;,
+&quot;Uzbekistan&quot;,
+&quot;Vanuatu&quot;,
+&quot;Venezuela (Bolivarian Republic of)&quot;,
+&quot;Viet Nam&quot;,
+&quot;Yemen&quot;,
+&quot;Zambia&quot;,
+&quot;Zimbabwe&quot;]</code></pre>
+            <h3 id="create-the-javascript-callback">Create The JavaScript Callback</h3>
+            <p>Next we will create our JavaScript callback to dynamically add our JSON array of countries to our page.</p>
+            <p>Create the file source/callbacks/countries.js, open it in your editor and copy and paste the following JavaScript code into the file.</p>
+            <pre><code class="language-javascript">module.exports = ({ $, site }) =&gt; {
+    const countries = site.dataCatalog.countries;
+    let $target = $(&quot;#hello-world&quot;);
+
+    $target.after(&quot;&lt;ol class=\&quot;countries\&quot;&gt;&lt;/ol&gt;&quot;);
+    $target = $(&quot;ol.countries&quot;);
+
+    countries.forEach(country =&gt; {
+        $target.append(`
+            &lt;li&gt;&lt;span class=&quot;country&quot;&gt;${country}&lt;/span&gt;&lt;/li&gt;
+        `);
+    });
+};</code></pre>
+            <p>Let&apos;s take a closer look at what our callback is doing.</p>
+            <ol>
+                <li>
+                    <p>It is exporting a function.</p>
+                </li>
+                <li>
+                    <p>The function parameters are destructured from the context argument that Trio calls the callback with.</p>
+                    <ul>
+                        <li>
+                            <p><code>$</code> is the cheerio wrapper of our composite.</p>
+                        </li>
+                        <li>
+                            <p><code>site</code> contains all the metadata that Trio generated when it built our project from which we can reference our list of countries.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>We assign a reference to the countries list site.dataCatalog.countries to <code>const countries</code>.</p>
+                </li>
+                <li>
+                    <p>We query the cheerio wrapper of our composite for the h1 tag and assign the result to <code>$target</code>.</p>
+                </li>
+                <li>
+                    <p>Using <code>$target</code>, we add an ordered list tag <code>&lt;ol class=&quot;countries&quot;&gt;&lt;/ol&gt;</code> immediately after what $target points to, which is the h1 tag.</p>
+                </li>
+                <li>
+                    <p>We query the cheerio wrapper of our composite again but this time for the ordered list tag we just added and assign the result to $target.</p>
+                </li>
+                <li>
+                    <p>We then iterate over the countries list, appending each country to our ordered list.</p>
+                </li>
+            </ol>
+            <p>Now that we have our callback coded, we need to remove the <code>&lt;section data-trio-include=&quot;countries.md&quot;&gt;&lt;/section&gt;</code> tag from the page template source/templates/default.html, which should then look like this:</p>
+            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;title&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/main.a78b8b8a243afb4450c54f2ad4317ad2.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;main&gt;
+        &lt;section data-trio-fragment&gt;&lt;/section&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+            <p>To wire up our callback we have to add it to our page fragment&apos;s front matter. Open source/fragments/index.md in your editor and copy and paste the following into the file&apos;s front matter</p>
+            <pre><code class="language-YAML">callback: countries</code></pre>
+            <p>so that the file now looks like this</p>
+            <pre><code class="language-YAML">&lt;!--
+template: default.html
+title: Hello World
+appendToTarget: true
+callback: countries
+--&gt;</code></pre>
+            <pre><code class="language-markdown"># Hello World</code></pre>
+            <p>Now let&apos;s build and run our project again. From the root of the project, run the following command in the terminal</p>
+            <pre><code class="language-shell">trio b &amp;&amp; trio s</code></pre>
+            <p>and once again you should see the page rendered but this time with an ordered list of countries.</p>
+            <h3 id="it-isn-t-just-la-di-da">It Isn&apos;t Just La Di Da</h3>
+            <p>Being able to work our composites using just JavaScript and metadata isn&apos;t a small thing. In fact, it is perhaps one of the best and most empowering features of Trio. There&apos;s no additional template language to learn and there are
+                no template tags peppered throughout our markup and that means that our markup is clean, easier to reason about and that aids in making changes and enhancements much easier. To those of you who love JavaScript and clean HTML I say, &quot;it
+                isn&apos;t just la di da!&quot;</p>
+            <p>We&apos;ve only just scrathed the surface with this example. There is no end to what you can achieve with Trio&apos;s approach to working composites using JavaScript and metadata. Thinking about creating a potfolio? Callbacks and JSON data
+                catalogs will make it a snap. Thinking about creating a kick ass blog for yourself or your company, well Trio has you covered there as well as it has an extensive array of blog-specific metadata to help you build out your blog.</p>
         </main>
         <a href="/trio-docs-iopages/docs/getstarted">&lt;&#xA0;Back To Get Started</a>
     </section>
