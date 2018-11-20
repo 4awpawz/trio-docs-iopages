@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.a78b8b8a243afb4450c54f2ad4317ad2.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.c30a6245f11b7fdde4bac1ce189da37e.css">
     <script src="/trio-docs-iopages/scripts/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -347,8 +347,8 @@ appendToTarget: true
 
             <h2 id="5-adding-content-dynamically-using-javascript-and-metadata">5. Adding Content Dynamically Using JavaScript And Metadata</h2>
             <p>In step 4 above we created an include to add our list of countries to our page. While it is a perfectly acceptable to do it that way, the sad truth is that countries have to be added and removed from the list as the geopolitical nature of
-                the world changes. A better approach would be to get the list from some online database, maybe by creating an NPM task that queries the United Nations countries database, and save the results of the query as a JSON file in souce/data/countries.json.
-                For this part of our exercise we are going to pretend that we did query a database and did get the results which we saved in source/data/countries.json.</p>
+                the world changes. A better approach would be to periodically get the list from some online database, maybe by creating an NPM task that queries the United Nations countries database, and save the results of the query as a JSON file. For
+                this part of our exercise we are going to pretend that we did query a database and did get the results which we saved in the file source/data/countries.json.</p>
             <h3 id="create-source-data-countries-json">Create source/data/countries.json</h3>
             <p>We will mock the results of our imaginary query of an online countries database so create the file source/data/countries.json and copy and paste the JSON array of countries below to the file.</p>
             <pre><code class="language-json">[&quot;Afghanistan&quot;,
@@ -551,12 +551,12 @@ appendToTarget: true
     const countries = site.dataCatalog.countries;
     let $target = $(&quot;#hello-world&quot;);
 
-    $target.after(&quot;&lt;ol class=\&quot;countries\&quot;&gt;&lt;/ol&gt;&quot;);
-    $target = $(&quot;ol.countries&quot;);
+    $target.after(&quot;&lt;ol class=\&quot;country-list\&quot;&gt;&lt;/ol&gt;&quot;);
+    $target = $(&quot;ol.country-list&quot;);
 
     countries.forEach(country =&gt; {
         $target.append(`
-            &lt;li&gt;&lt;span class=&quot;country&quot;&gt;${country}&lt;/span&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;div class=&quot;country-list__item&quot;&gt;${country}&lt;/div&gt;&lt;/li&gt;
         `);
     });
 };</code></pre>
@@ -566,7 +566,7 @@ appendToTarget: true
                     <p>It is exporting a function.</p>
                 </li>
                 <li>
-                    <p>The function parameters are destructured from the context argument that Trio calls the callback with.</p>
+                    <p>The function parameters are destructured from the context argument that Trio passes to the callback.</p>
                     <ul>
                         <li>
                             <p><code>$</code> is the cheerio wrapper of our composite.</p>
@@ -577,10 +577,10 @@ appendToTarget: true
                     </ul>
                 </li>
                 <li>
-                    <p>We assign a reference to the countries list site.dataCatalog.countries to <code>const countries</code>.</p>
+                    <p>We assign a reference to the list of countries <code>site.dataCatalog.countries</code> to <code>const countries</code>.</p>
                 </li>
                 <li>
-                    <p>We query the cheerio wrapper of our composite for the h1 tag and assign the result to <code>$target</code>.</p>
+                    <p>We query the cheerio wrapper of our composite for the <code>h1</code> tag which has an ID of <code>hello-world</code> and assign the result to <code>$target</code>.</p>
                 </li>
                 <li>
                     <p>Using <code>$target</code>, we add an ordered list tag <code>&lt;ol class=&quot;countries&quot;&gt;&lt;/ol&gt;</code> immediately after what $target points to, which is the h1 tag.</p>
@@ -592,7 +592,8 @@ appendToTarget: true
                     <p>We then iterate over the countries list, appending each country to our ordered list.</p>
                 </li>
             </ol>
-            <p>Now that we have our callback coded, we need to remove the <code>&lt;section data-trio-include=&quot;countries.md&quot;&gt;&lt;/section&gt;</code> tag from the page template source/templates/default.html, which should then look like this:</p>
+            <p>Now that we have our callback coded we no longer need the include, we need to remove the <code>&lt;section data-trio-include=&quot;countries.md&quot;&gt;&lt;/section&gt;</code> tag from the page template source/templates/default.html, which
+                should then look like this:</p>
             <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 
@@ -601,7 +602,6 @@ appendToTarget: true
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
     &lt;title&gt;title&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/main.a78b8b8a243afb4450c54f2ad4317ad2.css&quot;&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
@@ -624,12 +624,12 @@ callback: countries
             <p>Now let&apos;s build and run our project again. From the root of the project, run the following command in the terminal</p>
             <pre><code class="language-shell">trio b &amp;&amp; trio s</code></pre>
             <p>and once again you should see the page rendered but this time with an ordered list of countries.</p>
-            <h3 id="it-isn-t-just-la-di-da">It Isn&apos;t Just La Di Da</h3>
-            <p>Being able to work our composites using just JavaScript and metadata isn&apos;t a small thing. In fact, it is perhaps one of the best and most empowering features of Trio. There&apos;s no additional template language to learn and there are
-                no template tags peppered throughout our markup and that means that our markup is clean, easier to reason about and that aids in making changes and enhancements much easier. To those of you who love JavaScript and clean HTML I say, &quot;it
-                isn&apos;t just la di da!&quot;</p>
-            <p>We&apos;ve only just scrathed the surface with this example. There is no end to what you can achieve with Trio&apos;s approach to working composites using JavaScript and metadata. Thinking about creating a potfolio? Callbacks and JSON data
-                catalogs will make it a snap. Thinking about creating a kick ass blog for yourself or your company, well Trio has you covered there as well as it has an extensive array of blog-specific metadata to help you build out your blog.</p>
+            <h3 id="summary">Summary</h3>
+            <p>Being able to work our composites using just JavaScript and metadata is perhaps one of the best and most empowering features of Trio. The code responsible for dynamically working our composites are neatly encapsulated in their own JavaScript
+                modules and our markup remains clean, unclutted and free of template tags peppered throughout. This separation of concerns leads to a project that is easier to reason about and more maintainable.</p>
+            <p>We&apos;ve only just scrathed the surface with this exercise. There is no end to what you can achieve with Trio&apos;s approach to working composites using JavaScript and metadata. Thinking about creating a potfolio? Callbacks and JSON data
+                catalogs will make it a snap. Thinking about creating a kick ass blog for yourself or your company, well Trio has you covered there as well as it has an extensive array of blog-specific metadata to help you build out your blog which we
+                will explore next in detail in the [Building A Blog] exercise.</p>
         </main>
         <a href="/trio-docs-iopages/docs/getstarted">&lt;&#xA0;Back To Get Started</a>
     </section>
