@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.c30a6245f11b7fdde4bac1ce189da37e.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.c9be7b404841f363dca4e165589c8bbc.css">
     <script src="/trio-docs-iopages/scripts/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -58,7 +58,7 @@
             <p>Below is a complete list of these attributes along with their descriptions.</p>
             <h2 id="data-trio-fragment"><code>data-trio-fragment</code></h2>
             <pre><code class="language-html">&lt;main data-trio-fragment&gt;&lt;/main&gt;</code></pre>
-            <p>This attribute is used in page tempates and instructs Trio to target this HTML tag when creating the composite consisting of the page fragment&apos;s content and this page template&apos;s content.</p>
+            <p>This attribute is used in page templates and instructs Trio to target this HTML tag when creating the composite consisting of the page fragment&apos;s content and this page template&apos;s content.</p>
             <p><strong>!</strong> <em>data-trio-fragment can be omitted if the page template is designed to be used by page fragments that do not contribute content.</em></p>
             <p>By default, Trio replaces the HTML tag with the content from the page fragment. To append the content to this HTML tag, declare <code>appendToTarget: true</code> in your page fragment&apos;s front matter. For more information see <a href="/trio-docs-iopages/docs/learn/frontmatter">Front Matter</a>.</p>
             <h2 id="data-trio-include"><code>data-trio-include</code></h2>
@@ -69,13 +69,13 @@
             <p>Trio supports both <code>static</code> and <code>dynamic</code> include file declarations. Static include file declarations hard code the include file&apos;s name. Dynamic include file declarations use one level of indirection to resolve the
                 include file&apos;s name.</p>
             <h4 id="static-include-file-declaration">Static Include File Declaration</h4>
-            <p>To statically declare an include file in a page fragment or page template, add the data attribute <code>datata-trio-include</code> to an HTML tag and assign its value the name of the include file, including its file type of either .md or .html,
+            <p>To statically declare an include file in a page fragment or page template, add the data attribute <code>data-trio-include</code> to an HTML tag and assign its value the name of the include file, including its file type of either .md or .html,
                 as its value:</p>
             <pre><code class="language-html">&lt;header data-trio-include=&quot;header.html&quot;&gt;&lt;/header&gt;</code></pre>
             <h4 id="dynamic-include-file-declaration">Dynamic Include File Declaration</h4>
-            <p>To dynamically declare an include file in a page fragment or page template, add the data attribute <code>datata-trio-include</code> to an HTML tag and assign its value the name of a <code>front matter property</code> that Trio expects to resolve
+            <p>To dynamically declare an include file in a page fragment or page template, add the data attribute <code>data-trio-include</code> to an HTML tag and assign its value the name of a <code>front matter property</code> that Trio expects to resolve
                 to the name of an include file, including its file type of either .md or .html.</p>
-            <p>Dynamic includes are useful in those situations where a page template is associated with more than one page fragment and each page fragment contributes a diffrent include file.</p>
+            <p>Dynamic includes are useful in those situations where a page template is associated with more than one page fragment and each page fragment contributes a different include file.</p>
             <p>For example, a page template named <code>default.html</code> is associated with two page fragments and in its content dynamically declares an include file as follows:</p>
             <pre><code class="language-html">&lt;header data-trio-include=&quot;header&quot;&gt;&lt;/header&gt;</code></pre>
             <p>One of the page fragments associated with the page template has the following properties in its front matter:</p>
@@ -88,7 +88,7 @@ header: simpleheader.html
 template: default.html
 header: complexheader.html
 --&gt;</code></pre>
-            <p>Bothe page fragments are associated with the same page template yet each page fragment is including a different include file.</p>
+            <p>Both page fragments are associated with the same page template yet each page fragment is including a different include file.</p>
             <h2 id="data-trio-link"><code>data-trio-link</code></h2>
             <pre><code class="language-html">&lt;link data-trio-link rel=&quot;stylesheet&quot; href=&quot;/css/style.css&quot;&gt;
 
@@ -113,11 +113,11 @@ header: complexheader.html
 
 &lt;img src=&quot;/xyz/media/mist-niagara-falls-river.jpg&quot;&gt;</code></pre>
         </main>
-        <a href="/trio-docs-iopages/docs/getstarted">&lt;&#xA0;Back To Get Started</a>
+        <a href="/trio-docs-iopages/docs/learn">&lt;&#xA0;Back To Get Started</a>
     </section>
     <footer class="footer">
         <div class="container">
-            <p>Designed with love for the <strong>Web</strong> and with a passion for <strong>simplifying complex things</strong> by <strong>@jefftschwartz</strong></p>
+            <p>Designed with <span class="footer__heart">&#x2665;</span> for the <strong>Web</strong> and with a passion for <strong>simplifying complex things</strong> by <strong>@jefftschwartz</strong></p>
             <p class="copyright">Copyright &#xA9;2018 All Rights Reserved. Code licensed MIT.</p>
         </div>
     </footer>

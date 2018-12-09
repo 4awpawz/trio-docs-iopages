@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Cache-control" content="no-cache">
-    <title>How Pages Are Created</title>
+    <title>Building A Blog</title>
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
@@ -53,52 +53,57 @@
     </header>
     <section class="container">
         <main class="learnhowto">
-            <h1 id="how-pages-are-composed">How Pages Are Composed</h1>
-            <p>Trio uses the following project assets to compose web pages:</p>
-            <ol>
+            <h1 id="building-a-blog">Building A blog</h1>
+            <p><strong>!</strong> A sample blogging project complete with categories and tags <a target="_blank" href="https://github.com/4awpawz/trio-blog-example">is available on Github</a> and a live version of the sample blog project <a target="_blank"
+                    href="https://4awpawz.github.io/trio-blog-example-pages/">can be viewed here</a>.</p>
+            <p>Blogs typically have the following assortment and relationship of pages:</p>
+            <ul>
                 <li>
-                    <p>Includes, located in the source/includes folder, are either HTML or markdown files that can contain front matter or content or both.</p>
+                    <p>One or more blog article pages. If the blog has many articles it is common for these pages to have navigational elements that allow the viewer to navigate between them. In addition, if the blog is using categories and/or tags then
+                        these pages may also present lists of links to articles related by category and/or tags as well. </p>
                 </li>
                 <li>
-                    <p>Page Fragments, located in the source/fragments folder, are either HTML or markdown files that must contain front matter and may or may not contain content and are always associated with a page template. </p>
+                    <p>One or more blog pages on which ordered lists of links to blog articles are presented for the viewer of the blog to select from. If the blog has many blog articles it is common for these pages to have navigational elements that allow
+                        the viewer to navigate between them. In addition, if the blog is using categories and/or tags then these pages may also present these categories and tags as links to category and tag pages to the user as well.</p>
                 </li>
                 <li>
-                    <p>Page Templates, located in the source/templates folder, are HTML files that provide the overall structure of the web pages you create with Trio.</p>
-                </li>
-            </ol>
-            <p><strong>!</strong> Besides the above, Trio unleashes the full power of JavaScript to empower you to further compose your web pages through its <a href="/trio-docs-iopages/docs/learn/javascriptcallbacks">callback mechanism</a>.</p>
-            <h2 id="includes">Includes</h2>
-            <p>For every include file Trio finds in the source/includes folder it performs the following action:</p>
-            <ol>
-                <li>
-                    <p>If the include has front matter and its front matter declares one or more JavaScript callbacks, Trio will synchronously call each of the callbacks, passing them a single argument called a context whose properties can be destructured
-                        and used by the callback to further compose the include file&apos;s content.</p>
-
-                </li>
-            </ol>
-            <h2 id="includes-page-fragments-page-templates-and-composites">Includes, Page Fragments, Page Templates And Composites</h2>
-            <p>For every page fragment file Trio finds in the source/fragments folder, it performs the following actions:</p>
-            <ol>
-                <li>
-                    <p>Trio creates a composite that represents the page fragment&apos;s associated page template.</p>
+                    <p>One category page for each category used by the blog on which all articles with the same category are listed.</p>
                 </li>
                 <li>
-                    <p>Trio merges any content that might be contributed by the page fragment into the composite.</p>
+                    <p>One tag page for each tag used by the blog on which all articles with the same tag are listed.</p>
+                </li>
+            </ul>
+            <h2 id="blog-related-metadata">Blog Related Metadata</h2>
+            <p>As can be seen from the above, &quot;stitching together&quot; the assortment of pages required by a typical blog can be intimidating if not somewhat complex. To make building out a blog easier to reason about, Trio generates numerous blog
+                specific metadata collections that can make implementing a typical blog much easier. Trio also saves this collection of metadata to root/trio.manifest.json after every build or release is run. Below is a list of the blog specific metadata
+                items and collections that Trio makes available to JavaScript callbacks:</p>
+            <ul>
+                <li>
+                    <p>articlesCount: total number of articles</p>
                 </li>
                 <li>
-                    <p>If the composite contains one or more HTML tags that have a <code>data-trio-include</code> attribute, Trio will merge the content of each requested include into the composite.</p>
+                    <p>site.articlesCatalog:</p>
+                    <p> Included in each site.articlesCatalog item:</p>
+                    <ul>
+                        <li>
+                            <p>relatedArticlesByTag: if the article has 1 or more tags.</p>
+                        </li>
+                        <li>
+                            <p>relatedArticlesByTagFlattened: if the article has 1 or more tags.</p>
+                        </li>
+                        <li>
+                            <p>relatedArticlesByCategory: if the article is categorized.</p>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <p>If the page fragment&apos;s front matter declares one or more JavaScript callbacks, Trio will synchronously call each of the callbacks, passing them a single argument called a context whose properties can be destructured and used by
-                        the callback to further compose the composite. </p>
+                    <p>site.categoriesCatalog: if 1 or more articles are categorized.</p>
                 </li>
                 <li>
-                    <p>Trio then saves the composite to the public folder with a path and file name as explained in <a href="/trio-docs-iopages/docs/learn/filenamesandpermalinks">File Names And Permalinks</a>.</p>
+                    <p>site.sortedTagCatalog: if 1 or more articles are categorized.</p>
                 </li>
-            </ol>
-            <h2 id="includes-and-page-fragments-used-for-side-effects-only">Includes And Page Fragments Used For Side Effects Only</h2>
-            <p>It is perfectly acceptable for includes and page fragments to contain no content, in which case they are being used for side effects only, meaning that they declare JavaScript callbacks in their front matter which, when called, are used to
-                dynamically compose their content.</p>
+            </ul>
+            <p><strong>!</strong> Article lists are sorted in descending date and title order.</p>
         </main>
         <a href="/trio-docs-iopages/docs/learn">&lt;&#xA0;Back To Get Started</a>
     </section>

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-iopages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
-    <link rel="stylesheet" href="/trio-docs-iopages/css/main.c30a6245f11b7fdde4bac1ce189da37e.css">
+    <link rel="stylesheet" href="/trio-docs-iopages/css/main.c9be7b404841f363dca4e165589c8bbc.css">
     <script src="/trio-docs-iopages/scripts/highlight.pack.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
@@ -60,13 +60,13 @@
             <h2 id="root-public-"><code>root/public/</code></h2>
             <p>The folder where the generated website is saved to whenever Trio builds the project&apos;s source folder.</p>
             <h2 id="root-source-"><code>root/source/</code></h2>
-            <p>The Trio project&apos;s development folder.</p>
+            <p>The development folder.</p>
             <h2 id="root-source-callbacks-"><code>root/source/callbacks/</code></h2>
-            <p>The folder where JavaScript callback modules are kept and are the JavaScript modules you declare in both page fragments and includes.</p>
+            <p>The folder where JavaScript callback modules, which are referenced by page fragments and includes, live.</p>
             <h2 id="root-source-css-"><code>root/source/css/</code></h2>
-            <p>The folder where CSS files are kept.</p>
+            <p>The folder where CSS files live.</p>
             <h2 id="root-source-data-"><code>root/source/data/</code></h2>
-            <p>The folder where .json data files are kept which are exposed via the <code>dataCatalog</code> property in the metadata that Trio generates and their contents are exposed as &quot;file name&quot;: [file content].</p>
+            <p>The folder where JSON data files, exposed as &quot;file name&quot;: [file content] in the site.dataCatalog metadata object passed to JavaScript callbacks, live.</p>
             <p>For example, the content of the file /source/data/personalization.json would be exposed as:</p>
             <pre><code class="language-json">&quot;dataCatalog&quot;: {
     &quot;personalization&quot;: {
@@ -75,32 +75,37 @@
     },
     &quot;someotherfile&quot; {...}
 }</code></pre>
+            <p><strong>!</strong> See <a href="/trio-docs-iopages/docs/learn/metadata/#datacatalog">dataCatalog</a> for more information.</p>
             <h2 id="root-source-fragments-"><code>root/source/fragments/</code></h2>
-            <p>The folder where .md and .html page fragments are kept.</p>
+            <p>The folder where .md and .html page fragments live.</p>
             <h2 id="root-source-fragments-blog"><code>root/source/fragments/blog</code></h2>
-            <p>The folder where .md and .html blog specific page fragments are kept.</p>
+            <p>The folder where blog specific .md and .html page fragments live.</p>
             <h2 id="root-source-fragments-blog-articles"><code>root/source/fragments/blog/articles</code></h2>
-            <p>The folder where .md and .html blog article specific page fragments are kept.</p>
+            <p>The folder where blog article specific .md and .html page fragments live.</p>
+            <h2 id="root-source-fragments-blog-category"><code>root/source/fragments/blog/category</code></h2>
+            <p>The folder where blog category specific .md and .html page fragments live.</p>
+            <h2 id="root-source-fragments-blog-tag"><code>root/source/fragments/blog/tag</code></h2>
+            <p>The folder where blog tag specific .md and .html page fragments live.</p>
             <h2 id="root-source-includes-"><code>root/source/includes/</code></h2>
-            <p>The folder where .md and .html include files are kept.</p>
+            <p>The folder where .md and .html include files live.</p>
             <h2 id="root-source-media-"><code>root/source/media/</code></h2>
-            <p>The folder where media (.jpg, .gif, .pdf, .etc) are kept.</p>
+            <p>The folder where media (e.g. .jpg, .gif, .pdf, .etc) files live.</p>
             <h2 id="root-source-sass-"><code>root/source/sass/</code></h2>
-            <p>The folder where the main and imported .scss files are kept.</p>
+            <p>The folder where Sass files live.</p>
             <h2 id="root-source-scripts-"><code>root/source/scripts/</code></h2>
-            <p>The folder where run-time JavaScript files are kept.</p>
+            <p>The folder where run-time JavaScript dependencies live.</p>
             <h2 id="root-source-templates-"><code>root/source/templates/</code></h2>
-            <p>The folder where .html page templates are kept.</p>
+            <p>The folder where .html page templates live.</p>
             <h2 id="root-trio-json"><code>root/trio.json</code></h2>
             <p>The project&apos;s configuration file.</p>
             <h2 id="root-trio-manifest-json"><code>root/trio.manifest.json</code></h2>
-            <p>Contains the extensive collections of metadata that is generated every time Trio builds the project.</p>
+            <p>File which contains collections of metadata that are generated every time Trio builds the project.</p>
         </main>
-        <a href="/trio-docs-iopages/docs/getstarted">&lt;&#xA0;Back To Get Started</a>
+        <a href="/trio-docs-iopages/docs/learn">&lt;&#xA0;Back To Get Started</a>
     </section>
     <footer class="footer">
         <div class="container">
-            <p>Designed with love for the <strong>Web</strong> and with a passion for <strong>simplifying complex things</strong> by <strong>@jefftschwartz</strong></p>
+            <p>Designed with <span class="footer__heart">&#x2665;</span> for the <strong>Web</strong> and with a passion for <strong>simplifying complex things</strong> by <strong>@jefftschwartz</strong></p>
             <p class="copyright">Copyright &#xA9;2018 All Rights Reserved. Code licensed MIT.</p>
         </div>
     </footer>
