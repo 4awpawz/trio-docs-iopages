@@ -98,7 +98,7 @@ title: Hello World
 --&gt;</code></pre>
             <h3 id="add-the-appendtotarget-property-to-the-front-matter">Add The &quot;appendToTarget&quot; Property To The Front Matter</h3>
             <p>Now we will tell Trio how we want it to merge our page fragment&apos;s content into our page template&apos;s markup.</p>
-            <p>What we want is for Trio to append the content to the page template&apos;s main tag which we adorned with the data-trio-fragment attribute.</p>
+            <p>What we want is for Trio to append the content to the page template&apos;s section tag which we previously adorned with the data-trio-fragment attribute.</p>
             <p><strong>!</strong> If we don&apos;t do this, Trio, by default, will replace the main tag with the page fragment&apos;s content.</p>
             <p>Lets do this by adding the &quot;appendToTarget&quot; property to the front matter with a boolean value of true.</p>
             <pre><code class="language-YAML">&lt;!--
