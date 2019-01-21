@@ -19,7 +19,7 @@
     <meta name="description" content="Trio is an open source toolkit for building static websites using HTML, CSS and JavaScript and requires almost zero configuration. You use YAML front matter, JavaScript and Sass to quickly prototype and implement your designs, which makes Trio the perfect tool for those who love to design in the browser.">
     <meta name="author" content="Jeffrey Schwartz">
     <meta name="generator" content="Trio v0.0.2">
-    <title>Trio v0.0.1 Released</title>
+    <title>Configuration</title>
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-pages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-pages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
@@ -52,11 +52,11 @@
                         <a class="header__nav-item-link" href="/trio-docs-pages">
                         <i class="fas fa-home header__nav-item-icon"></i>Home</a>
                     </li>
-                    <li class="header__nav-item">
+                    <li class="header__nav-item header__nav-item--active">
                         <a class="header__nav-item-link" href="/trio-docs-pages/docs">
                         <i class="fas fa-file header__nav-item-icon"></i>Docs</a>
                     </li>
-                    <li class="header__nav-item header__nav-item--active">
+                    <li class="header__nav-item">
                         <a id="trio-blog-link" class="header__nav-item-link" href="/trio-docs-pages/blog">
                         <i class="fas fa-columns header__nav-item-icon"></i>Blog</a>
                     </li>
@@ -65,14 +65,19 @@
         </div>
     </header>
     <section class="container">
-        <main class="learnhowto article">
-            <h1 id="trio-v0-0-1-is-now-public">Trio v0.0.1 Is Now Public</h1>
-            <p>I am very excited to announce the first public release of Trio, v0.0.1, on <a target="_blank" href="https://www.npmjs.com/package/@4awpawz/trio">NPM</a>. This release represents the culmination of months of work, not only on the code base
-                itself but also on the documentation and the example blog.</p>
-            <p>In the coming weeks I will be publishing a series of &quot;how to&quot; articles and videos that demonstrate using Trio to create static web sites.</p>
-            <p>Trio is an open source project and it needs you, the community, to provide feedback, suggest new features and report issues and bugs. Please don&apos;t hesitate doing so <a target="_blank" href="https://github.com/4awpawz/trio/issues">here</a>                and you can also reach <a target="_blank" href="https://twitter.com/jefftschwartz">me</a> on Twitter.</p>
-            <p>Pardon the shameless plug but if you enjoy using Trio please consider starring the <a target="_blank" href="https://github.com/4awpawz/trio">repo</a> and spreading the word :).</p>
+        <main class="learnhowto">
+            <h1 id="configuration">Configuration</h1>
+            <p>Trio supports a number of configuration options as described below, all of which have sensible defaults, which you can override in your project&apos;s <code>trio.json</code> file:</p>
+            <h2 id="baseurl">baseUrl</h2>
+            <p>A string whose default value is <code>&quot;&quot;</code>. Used to set the value of <code>data-trio-link</code>. See <a href="/trio-docs-pages/docs/learn/datatriotagattributes#data-trio-link">data-trio-link</a> for more information.</p>
+            <h2 id="blogfoldername">blogFolderName</h2>
+            <p>A string whose default value is <code>&quot;blog&quot;</code>. Used to set the name of the <code>public blog folder</code> that is generated. See <a href="/trio-docs-pages/docs/learn/buildingablog#configuring-the-blog-folder-name">Configuring The Blog Folder Name</a>                for more information.</p>
+            <h2 id="nojekyll">nojekyll</h2>
+            <p>A boolean whose default value is <code>false</code>. Used to instruct Trio to write a <code>.nojekyll</code> file to the public folder during release builds to completely bypass Jekyll processing and is only relevant when hosting your website
+                on GitHub Pages. See <a target="_blank" href="https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/">Bypassing Jekyll on GitHub Pages</a> for more information.</p>
         </main>
+        <br>
+        <a href="/trio-docs-pages/docs/learn">&lt;&#xA0;Back To Learning Guides</a>
     </section>
     <footer class="footer">
         <div class="container">
