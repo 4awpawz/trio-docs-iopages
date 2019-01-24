@@ -19,7 +19,7 @@
     <meta name="description" content="Trio is an open source toolkit for building static websites using HTML, CSS and JavaScript and requires almost zero configuration. You use YAML front matter, JavaScript and Sass to quickly prototype and implement your designs, which makes Trio the perfect tool for those who love to design in the browser.">
     <meta name="author" content="Jeffrey Schwartz">
     <meta name="generator" content="Trio v0.0.2">
-    <title>How Pages Are Created</title>
+    <title>Trio v0.0.5 Released</title>
     <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/trio-docs-pages/css/libs/github/github-markdown.7a25cddb2ef752830353f7e19a905735.css">
     <link rel="stylesheet" href="/trio-docs-pages/css/libs/highlight/github.bf6c14925e66edb1526b6c9489b3c042.css">
@@ -52,11 +52,11 @@
                         <a class="header__nav-item-link" href="/trio-docs-pages">
                         <i class="fas fa-home header__nav-item-icon"></i>Home</a>
                     </li>
-                    <li class="header__nav-item header__nav-item--active">
+                    <li class="header__nav-item">
                         <a class="header__nav-item-link" href="/trio-docs-pages/docs">
                         <i class="fas fa-file header__nav-item-icon"></i>Docs</a>
                     </li>
-                    <li class="header__nav-item">
+                    <li class="header__nav-item header__nav-item--active">
                         <a id="trio-blog-link" class="header__nav-item-link" href="/trio-docs-pages/blog">
                         <i class="fas fa-columns header__nav-item-icon"></i>Blog</a>
                     </li>
@@ -65,56 +65,10 @@
         </div>
     </header>
     <section class="container">
-        <main class="learnhowto">
-            <h1 id="how-pages-are-composed">How Pages Are Composed</h1>
-            <p>Trio uses the following project assets to compose web pages:</p>
-            <ol>
-                <li>
-                    <p>Includes, located in the source/includes folder, are either HTML or markdown files that can contain front matter or content or both.</p>
-                </li>
-                <li>
-                    <p>Page Fragments, located in the source/fragments folder, are either HTML or markdown files that must contain front matter and may or may not contain content and are always associated with a page template. </p>
-                </li>
-                <li>
-                    <p>Page Templates, located in the source/templates folder, are HTML files that provide the overall structure of the web pages you create with Trio.</p>
-                </li>
-            </ol>
-            <p><strong>!</strong> Besides the above, Trio unleashes the full power of JavaScript to empower you to further compose your web pages through its <a href="/trio-docs-pages/docs/learn/javascriptcallbacks">JavaScript callback mechanism</a>.</p>
-            <h2 id="includes">Includes</h2>
-            <p>For every include file Trio finds in the source/includes folder it performs the following action:</p>
-            <ol>
-                <li>
-                    <p>If the include has front matter and its front matter declares one or more JavaScript callbacks, Trio will synchronously call each of the callbacks, passing them a single argument called a context whose properties can be destructured
-                        and used by the callback to further compose the include file&apos;s content.</p>
-
-                </li>
-            </ol>
-            <h2 id="includes-page-fragments-page-templates-and-composites">Includes, Page Fragments, Page Templates And Composites</h2>
-            <p>For every page fragment file Trio finds in the source/fragments folder, it performs the following actions:</p>
-            <ol>
-                <li>
-                    <p>Trio creates a composite that represents the page fragment&apos;s associated page template.</p>
-                </li>
-                <li>
-                    <p>Trio merges any content that might be contributed by the page fragment into the composite.</p>
-                </li>
-                <li>
-                    <p>If the composite contains one or more HTML tags that have a <code>data-trio-include</code> attribute, Trio will merge the content of each requested include into the composite.</p>
-                </li>
-                <li>
-                    <p>If the page fragment&apos;s front matter declares one or more JavaScript callbacks, Trio will synchronously call each of the callbacks, passing them a single argument called a context whose properties can be destructured and used by
-                        the callback to further compose the composite. </p>
-                </li>
-                <li>
-                    <p>Trio then saves the composite to the public folder with a path and file name as explained in <a href="/trio-docs-pages/docs/learn/filenamesandpermalinks">File Names And Permalinks</a>.</p>
-                </li>
-            </ol>
-            <h2 id="includes-and-page-fragments-used-for-side-effects-only">Includes And Page Fragments Used For Side Effects Only</h2>
-            <p>It is perfectly acceptable for includes and page fragments to contain no content, in which case they are being used for side effects only, meaning that they declare JavaScript callbacks in their front matter which, when called, are used to
-                dynamically compose their content.</p>
+        <main class="learnhowto article">
+            <h1 id="trio-v0-0-5-is-now-public">Trio v0.0.5 Is Now Public</h1>
+            <p>This release addresses an issue which when generating the public destination paths for category pages would raise an exception. Please see the <a target="_blank" href="https://github.com/4awpawz/trio/tree/master#v005">changelog</a> for details.</p>
         </main>
-        <br>
-        <a href="/trio-docs-pages/docs/learn">&lt;&#xA0;Back To Learning Guides</a>
     </section>
     <footer class="footer">
         <div class="container">
